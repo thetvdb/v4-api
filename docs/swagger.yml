@@ -2,11 +2,11 @@ openapi: 3.0.0
 info:
   description: Documentation of the TVDB API V4
   title: TVDB API V4
-  version: 4.1.1
+  version: 4.3.6
 security:
   - bearerAuth: []    
 paths:
-  /artwork-statuses:
+  "/artwork/statuses":
     get:
       description: returns list of artwork status records
       operationId: getAllArtworkStatuses
@@ -26,7 +26,7 @@ paths:
                 type: object
       tags:
         - artwork-statuses
-  /artwork-types:
+  /artwork/types:
     get:
       description: returns list of artworkType records
       operationId: getAllArtworkTypes
@@ -127,7 +127,7 @@ paths:
                 type: object
       tags:
         - artwork
-  '/award-categories/{id}':
+  '/awards/categories/{id}':
     get:
       description: Returns a award category base record
       operationId: getAwardCategory
@@ -152,7 +152,7 @@ paths:
                 type: object
       tags:
         - award-categories
-  '/award-categories/{id}/extended':
+  '/awards/categories/{id}/extended':
     get:
       description: Returns a award category extended record
       operationId: getAwardCategoryExtended
@@ -298,6 +298,26 @@ paths:
                 type: object
       tags:
         - companies
+  '/companies/types':
+    get:
+      description: returns all company type records
+      operationId: getCompanyTypes
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CompanyType'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - companies
   '/companies/{id}':
     get:
       description: returns a company record
@@ -323,7 +343,7 @@ paths:
                 type: object
       tags:
         - companies
-  /content-ratings:
+  /content/ratings:
     get:
       description: returns list content rating records
       operationId: getAllContentRatings
@@ -363,6 +383,26 @@ paths:
                 type: object
       tags:
         - countries
+  '/entities/types':
+    get:
+      description: returns the active entity types
+      operationId: getEntityTypes
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/EntityType'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - entity-types
   '/episodes/{id}':
     get:
       description: Returns episode base record
@@ -399,6 +439,14 @@ paths:
           required: true
           schema:
             type: number
+        - description: meta
+          in: query
+          name: meta
+          required: false
+          schema:
+            type: string
+            enum: [translations]
+            example: translations
       responses:
         '200':
           description: response
@@ -444,6 +492,37 @@ paths:
                 type: object
       tags:
         - episodes
+  '/lists/{id}/translations/{language}':
+    get:
+      description: Returns list translation record
+      operationId: getListTranslation
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+        - description: language
+          in: path
+          name: language
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Translation'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - lists
   /genders:
     get:
       description: returns list of gender records
@@ -638,7 +717,7 @@ paths:
                 type: object
       tags:
         - login
-  /movie-statuses:
+  /movies/statuses:
     get:
       description: returns list of status records
       operationId: getAllMovieStatuses
@@ -720,6 +799,14 @@ paths:
           required: true
           schema:
             type: number
+        - description: meta
+          in: query
+          name: meta
+          required: false
+          schema:
+            type: string
+            enum: [translations]
+            example: translations
       responses:
         '200':
           description: response
@@ -765,7 +852,7 @@ paths:
                 type: object
       tags:
         - movies
-  /people-types:
+  /people/types:
     get:
       description: returns list of peopleType records
       operationId: getAllPeopleTypes
@@ -821,6 +908,14 @@ paths:
           required: true
           schema:
             type: number
+        - description: meta
+          in: query
+          name: meta
+          required: false
+          schema:
+            type: string
+            enum: [translations]
+            example: translations
       responses:
         '200':
           description: response
@@ -962,6 +1057,24 @@ paths:
                 type: object
       tags:
         - seasons
+  '/seasons/types':
+    get:
+      description: Returns season type records
+      operationId: getSeasonTypes
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SeasonType'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - seasons
   '/seasons/{id}/translations/{language}':
     get:
       description: Returns season translation record
@@ -1019,7 +1132,7 @@ paths:
                 type: object
       tags:
         - series
-  /series-statuses:
+  /series/statuses:
     get:
       description: returns list of status records
       operationId: getAllSeriesStatuses
@@ -1075,6 +1188,14 @@ paths:
           required: true
           schema:
             type: number
+        - description: meta
+          in: query
+          name: meta
+          required: false
+          schema:
+            type: string
+            enum: [translations]
+            example: translations
       responses:
         '200':
           description: response
@@ -1178,7 +1299,7 @@ paths:
                 type: object
       tags:
         - series
-  /source-types:
+  /sources/types:
     get:
       description: returns list of sourceType records
       operationId: getAllSourceTypes
@@ -1224,6 +1345,7 @@ paths:
                 type: object
       tags:
         - updates
+
 servers:
   - url: 'https://api4.thetvdb.com/v4'
 components:
@@ -1243,7 +1365,7 @@ components:
           type: string
           x-go-name: Name
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     ArtworkBaseRecord:
       description: base artwork record
       properties:
@@ -1264,7 +1386,7 @@ components:
           type: integer
           x-go-name: Type
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     ArtworkExtendedRecord:
       description: extended artwork record
       properties:
@@ -1321,7 +1443,7 @@ components:
           type: integer
           x-go-name: Width
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     ArtworkStatus:
       description: artwork status record
       properties:
@@ -1332,14 +1454,13 @@ components:
         name:
           type: string
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     ArtworkType:
       description: artwork type record
       properties:
         height:
           format: int64
           type: integer
-          x-go-name: Height
         id:
           format: int64
           type: integer
@@ -1369,7 +1490,7 @@ components:
           type: integer
           x-go-name: Width
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     AwardBaseRecord:
       description: base award record
       properties:
@@ -1378,7 +1499,7 @@ components:
         name:
           type: string
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     AwardCategoryBaseRecord:
       description: base award category record
       properties:
@@ -1400,7 +1521,7 @@ components:
         name:
           type: string
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     AwardCategoryExtendedRecord:
       description: extended award category record
       properties:
@@ -1427,7 +1548,7 @@ components:
           type: array
           x-go-name: Nominees
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     AwardExtendedRecord:
       description: extended award record
       properties:
@@ -1445,7 +1566,7 @@ components:
           type: integer
           x-go-name: Score
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     AwardNomineeBaseRecord:
       description: base award nominee record
       properties:
@@ -1469,7 +1590,7 @@ components:
         year:
           type: string
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Biography:
       description: biography record
       properties:
@@ -1480,7 +1601,7 @@ components:
           type: string
           x-go-name: Language
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Character:
       description: character record
       properties:
@@ -1529,8 +1650,10 @@ components:
         url:
           type: string
           x-go-name: URL
+        personName:
+          type: string
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Company:
       description: A company record
       properties:
@@ -1569,7 +1692,15 @@ components:
           type: string
           x-go-name: Slug
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
+    CompanyType:
+      description: A company type record
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
     ContentRating:
       description: content rating record
       properties:
@@ -1580,8 +1711,16 @@ components:
         name:
           type: string
           x-go-name: Name
+        country:
+          type: string
+        contentType:
+          type: string
+        order:
+          type: integer
+        fullName:
+          type: string
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Country:
       description: country record
       properties:
@@ -1595,7 +1734,7 @@ components:
           type: string
           x-go-name: ShortCode
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Entity:
       description: Entity record
       properties:
@@ -1608,7 +1747,18 @@ components:
         seriesId:
           type: integer
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
+    EntityType:
+      description: Entity Type record
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          x-go-name: Order
+        seriesId:
+          type: integer
+      type: object
     EntityUpdate:
       description: entity update record
       properties:
@@ -1627,7 +1777,7 @@ components:
           type: integer
           x-go-name: TimeStamp
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     EpisodeBaseRecord:
       description: base episode record
       properties:
@@ -1673,7 +1823,7 @@ components:
           type: integer
           x-go-name: SeriesID
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     EpisodeExtendedRecord:
       description: extended episode record
       properties:
@@ -1759,34 +1909,7 @@ components:
           type: array
           x-go-name: Trailers
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
-    FranchiseBaseRecord:
-      description: base franchise record
-      properties:
-        aliases:
-          items:
-            type: string
-          type: array
-          x-go-name: Aliases
-        id:
-          format: int64
-          type: integer
-          x-go-name: ID
-        name:
-          type: string
-          x-go-name: Name
-        nameTranslations:
-          items:
-            type: string
-          type: array
-          x-go-name: NameTranslations
-        overviewTranslations:
-          items:
-            type: string
-          type: array
-          x-go-name: OverviewTranslations
-      type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Gender:
       description: gender record
       properties:
@@ -1798,7 +1921,7 @@ components:
           type: string
           x-go-name: Name
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     GenreBaseRecord:
       description: base genre record
       properties:
@@ -1813,7 +1936,7 @@ components:
           type: string
           x-go-name: Slug
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Language:
       description: language record
       properties:
@@ -1829,7 +1952,7 @@ components:
         shortCode:
           type: string
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     ListBaseRecord:
       description: base list record
       properties:
@@ -1862,7 +1985,7 @@ components:
         url:
           type: string
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     ListExtendedRecord:
       description: extended list record
       properties:
@@ -1904,7 +2027,7 @@ components:
         url:
           type: string
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     MovieBaseRecord:
       description: base movie record
       properties:
@@ -1943,7 +2066,7 @@ components:
         status:
           $ref: '#/components/schemas/Status'
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     MovieExtendedRecord:
       description: extended movie record
       properties:
@@ -1976,11 +2099,10 @@ components:
             $ref: '#/components/schemas/Character'
           type: array
           x-go-name: Characters
-        franchises:
+        lists:
           items:
-            $ref: '#/components/schemas/FranchiseBaseRecord'
+            $ref: '#/components/schemas/ListBaseRecord'
           type: array
-          x-go-name: Franchises
         genres:
           items:
             $ref: '#/components/schemas/GenreBaseRecord'
@@ -2045,7 +2167,7 @@ components:
           type: array
           x-go-name: Trailers
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     NetworkBaseRecord:
       description: base network record
       properties:
@@ -2060,7 +2182,7 @@ components:
         slug:
           type: string
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     PeopleBaseRecord:
       description: base people record
       properties:
@@ -2082,7 +2204,7 @@ components:
           type: integer
           x-go-name: Score
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     PeopleExtendedRecord:
       description: extended people record
       properties:
@@ -2142,7 +2264,7 @@ components:
           type: array
           x-go-name: TagOptions
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     PeopleType:
       description: people type record
       properties:
@@ -2154,11 +2276,11 @@ components:
           type: string
           x-go-name: Name
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Race:
       description: race record
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Release:
       description: release record
       properties:
@@ -2169,7 +2291,7 @@ components:
         detail:
           type: string
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     RemoteID:
       description: remote id record
       properties:
@@ -2181,7 +2303,7 @@ components:
           type: integer
           x-go-name: Type
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SearchResult:
       description: search result
       properties:
@@ -2285,7 +2407,7 @@ components:
           type: integer
           x-go-name: Type
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeasonExtendedRecord:
       description: extended season record
       properties:
@@ -2341,7 +2463,7 @@ components:
           type: integer
           x-go-name: Type
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeasonType:
       description: season type record
       properties:
@@ -2357,7 +2479,7 @@ components:
           type: integer
           x-go-name: Type
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeriesAirsDays:
       description: A series airs day record
       properties:
@@ -2383,7 +2505,7 @@ components:
           type: boolean
           x-go-name: Wednesday
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeriesBaseRecord:
       description: The base record for a series
       properties:
@@ -2439,7 +2561,7 @@ components:
         status:
           $ref: '#/components/schemas/Status'
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeriesExtendedRecord:
       description: The extended record for a series
       properties:
@@ -2472,11 +2594,9 @@ components:
           x-go-name: DefaultSeasonType
         firstAired:
           type: string
-        franchises:
+        lists:
           items:
-            $ref: '#/components/schemas/FranchiseBaseRecord'
-          type: array
-          x-go-name: Franchises
+            $ref: '#/components/schemas/ListBaseRecord'
         genres:
           items:
             $ref: '#/components/schemas/GenreBaseRecord'
@@ -2539,7 +2659,7 @@ components:
           type: array
           x-go-name: Trailers
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SourceType:
       description: source type record
       properties:
@@ -2562,7 +2682,7 @@ components:
           type: integer
           x-go-name: Sort
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Status:
       description: status record
       properties:
@@ -2580,7 +2700,7 @@ components:
           type: string
           x-go-name: RecordType
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     StudioBaseRecord:
       description: studio record
       properties:
@@ -2594,7 +2714,7 @@ components:
         parentStudio:
           type: integer
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Tag:
       description: tag record
       properties:
@@ -2616,7 +2736,7 @@ components:
           type: array
           x-go-name: TagOptions
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     TagOption:
       description: tag option record
       properties:
@@ -2637,7 +2757,7 @@ components:
           type: string
           x-go-name: TagName
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Trailer:
       description: trailer record
       properties:
@@ -2652,7 +2772,7 @@ components:
         url:
           type: string
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Translation:
       description: translation record
       properties:
@@ -2672,20 +2792,14 @@ components:
         overview:
           type: string
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
-    Update:
-      description: update record
-      properties:
-        method:
-          type: string
-          x-go-name: Method
-        recordId:
-          format: int64
-          type: integer
-          x-go-name: RecordID
-        timeStamp:
-          format: int64
-          type: integer
-          x-go-name: TimeStamp
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
+    TagOptionEntity:
+      description: a entity with selected tag option
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/v4/tvdb-api-v4-core/pkg/model
+      properties:
+        name: 
+          type: string
+        tagName:
+          type: string
+        tagId:
+          type: integer
