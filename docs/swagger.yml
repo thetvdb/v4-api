@@ -1194,8 +1194,8 @@ paths:
           required: false
           schema:
             type: string
-            enum: [translations,episodes]
-            example: translations
+            enum: [translations, episodes]
+            example: episodes
       responses:
         '200':
           description: response
