@@ -2418,8 +2418,6 @@ components:
             $ref: '#/components/schemas/ArtworkBaseRecord'
           type: array
           x-go-name: Artwork
-        country:
-          type: string
         episodes:
           items:
             $ref: '#/components/schemas/EpisodeBaseRecord'
