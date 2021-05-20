@@ -1195,7 +1195,7 @@ paths:
           schema:
             type: string
             enum: [translations, episodes]
-            example: episodes
+            example: translations
       responses:
         '200':
           description: response
