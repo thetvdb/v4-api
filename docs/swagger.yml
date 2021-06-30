@@ -1629,6 +1629,10 @@ components:
           $ref: '#/components/schemas/SeriesBaseRecord'
         year:
           type: string
+        category:
+          type: string
+        name:
+          type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Biography:
