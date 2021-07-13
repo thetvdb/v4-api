@@ -1007,6 +1007,32 @@ paths:
                 type: object
       tags:
         - search
+  /seasons:
+    get:
+      description: returns list of seasons base records
+      operationId: getAllSeasons
+      parameters:
+        - description: page number
+          in: query
+          name: page
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/SeasonBaseRecord'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - seasons
   '/seasons/{id}':
     get:
       description: Returns season base record
@@ -1329,6 +1355,20 @@ paths:
           required: true
           schema:
             type: number
+        - in: query
+          name: type
+          required: false
+          schema:
+            type: string
+            enum: [ artwork,award_nominees,companies,episodes,lists,people,seasons,series,seriespeople,artworktypes,award_categories,awards,company_types,content_ratings,countries,entity_types,genres,languages,movies,movie_genres,movie_status,peopletypes,seasontypes,sourcetypes,tag_options,tags,translatedcharacters,translatedcompanies,translatedepisodes,translatedlists,translatedmovies,translatedpeople,translatedseasons,translatedserierk ]
+            example: movies
+        - in: query
+          name: action
+          required: false
+          schema:
+            type: string
+            enum: [ create, delete, update ]
+            example: movies
       responses:
         '200':
           description: response
