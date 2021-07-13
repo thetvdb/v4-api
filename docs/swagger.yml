@@ -992,10 +992,10 @@ paths:
           schema:
             type: number
         - description: limit results
-            in: query
-            name: limit
-            schema:
-              type: number
+          in: query
+          name: limit
+          schema:
+            type: number
       responses:
         '200':
           description: response
