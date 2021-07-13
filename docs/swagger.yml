@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Documentation of the TVDB API V4
   title: TVDB API V4
-  version: 4.3.6
+  version: 4.13.14
 security:
   - bearerAuth: []    
 paths:
