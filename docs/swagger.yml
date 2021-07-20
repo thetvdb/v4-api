@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Documentation of the TVDB API V4
   title: TVDB API V4
-  version: 4.3.14
+  version: 4.3.16
 security:
   - bearerAuth: []    
 paths:
@@ -1405,7 +1405,6 @@ components:
           type: string
           x-go-name: Name
       type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     ArtworkBaseRecord:
       description: base artwork record
       properties:
@@ -2378,8 +2377,6 @@ components:
         name:
           type: string
         nameTranslated:
-          type: string
-        network:
           type: string
         officialList:
           type: string
