@@ -2664,11 +2664,10 @@ components:
             type: string
           type: array
           x-go-name: NameTranslations
-        networks:
+        companies:
           items:
-            $ref: '#/components/schemas/NetworkBaseRecord'
+            $ref: '#/components/schemas/Company'
           type: array
-          x-go-name: Networks
         nextAired:
           type: string
           x-go-name: NextAired
