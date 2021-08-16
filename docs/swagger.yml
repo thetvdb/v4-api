@@ -2213,6 +2213,11 @@ components:
             type: string
           type: array
           x-go-name: SubtitleLanguages
+        tagOptions:
+          items:
+            $ref: '#/components/schemas/TagOption'
+          type: array
+          x-go-name: TagOptions
         trailers:
           items:
             $ref: '#/components/schemas/Trailer'
@@ -2529,6 +2534,14 @@ components:
           format: int64
           type: integer
           x-go-name: Type
+        companies:
+          type: object
+          $ref: '#/components/schemas/Companies'
+        tagOptions:
+          items:
+            $ref: '#/components/schemas/TagOption'
+          type: array
+          x-go-name: TagOptions
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeasonType:
