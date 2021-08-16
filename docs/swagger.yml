@@ -4,7 +4,7 @@ info:
   title: TVDB API V4
   version: 4.3.17
 security:
-  - bearerAuth: []    
+  - bearerAuth: []
 paths:
   "/artwork/statuses":
     get:
@@ -1243,7 +1243,7 @@ paths:
         - series
   '/series/{id}/episodes/{season-type}':
     get:
-      description: Returns series episodes from the specified season type, default returns the episodes in the series default season type 
+      description: Returns series episodes from the specified season type, default returns the episodes in the series default season type
       operationId: getSeriesEpisodes
       parameters:
         - in: query
@@ -1293,7 +1293,7 @@ paths:
                         type: array
                         items:
                           $ref: '#/components/schemas/EpisodeBaseRecord'
-                      
+
                   status:
                     type: string
                 type: object
@@ -2218,6 +2218,27 @@ components:
             $ref: '#/components/schemas/Trailer'
           type: array
           x-go-name: Trailers
+        inspirations:
+          items:
+            $ref: '#/components/schemas/Inspiration'
+          type: array
+          x-go-name: Inspirations
+        productionCountries:
+          items:
+            $ref: '#/components/schemas/ProductionCountry'
+          type: array
+          x-go-name: ProductionCountries
+        spokenLanguages:
+          items:
+            type: string
+          type: array
+          x-go-name: SpokenLanguages
+        firstRelease:
+          type: object
+          $ref: '#/components/schemas/Release'
+        companies:
+          type: object
+          $ref: '#/components/schemas/Companies'
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     NetworkBaseRecord:
@@ -2842,9 +2863,54 @@ components:
       description: a entity with selected tag option
       type: object
       properties:
-        name: 
+        name:
           type: string
         tagName:
           type: string
         tagId:
           type: integer
+    Inspiration:
+      description: Movie inspiration record
+      properties:
+        id:
+          format: int64
+          type: integer
+          x-go-name: ID
+        type:
+          type: string
+        typeName:
+          type: string
+        url:
+          type: string
+    ProductionCountry:
+      description: Production country record
+      properties:
+        id:
+          format: int64
+          type: integer
+          x-go-name: ID
+        country:
+          type: string
+        name:
+          type: string
+    Companies:
+      description: Companies by type record
+      properties:
+        studio:
+          type: array
+          $ref: '#/components/schemas/Company'
+        network:
+          type: array
+          $ref: '#/components/schemas/Company'
+        production:
+          type: array
+          $ref: '#/components/schemas/Company'
+        distributor:
+          type: array
+          $ref: '#/components/schemas/Company'
+        specialEffects:
+            type: array
+            $ref: '#/components/schemas/Company'
+
+
+
