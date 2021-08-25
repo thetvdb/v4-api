@@ -2666,7 +2666,7 @@ components:
           x-go-name: Aliases
         artworks:
           items:
-            $ref: '#/components/schemas/ArtworkBaseRecord'
+            $ref: '#/components/schemas/ArtworkExtendedRecord'
           type: array
           x-go-name: Artworks
         characters:
