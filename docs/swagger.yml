@@ -2388,6 +2388,9 @@ components:
           format: int64
           type: integer
           x-go-name: Type
+        sourceName:
+          type: string
+          x-go-name: SourceName
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SearchResult:
@@ -2450,6 +2453,29 @@ components:
           type: string
         year:
           type: string
+        thumbnail:
+          type: string
+        poster:
+          type: string
+        translations:
+          items:
+            $ref: '#/components/schemas/TranslationSimple'
+          type: array
+        is_official:
+          type: boolean
+        remoteIds:
+          items:
+            $ref: '#/components/schemas/RemoteID'
+          type: array
+          x-go-name: RemoteIDs
+        network:
+          type: string
+        title:
+          type: string
+        overviews:
+          items:
+            $ref: '#/components/schemas/TranslationSimple'
+          type: array
       type: object
     SeasonBaseRecord:
       description: season genre record
@@ -2880,6 +2906,13 @@ components:
           type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
+    TranslationSimple:
+      description: translation simple record
+      properties:
+        language:
+          type: string
+          x-go-name: Language
+      type: object
     TagOptionEntity:
       description: a entity with selected tag option
       type: object
@@ -2940,6 +2973,6 @@ components:
         self:
           type: string
         next:
-          next: string
+          type: string
 
 
