@@ -1392,7 +1392,10 @@ paths:
                     type: array
                   status:
                     type: string
+                  links:
+                    $ref: '#/components/schemas/Links'
                 type: object
+
       tags:
         - updates
 
@@ -2927,8 +2930,16 @@ components:
           type: array
           $ref: '#/components/schemas/Company'
         specialEffects:
-            type: array
-            $ref: '#/components/schemas/Company'
-
+          type: array
+          $ref: '#/components/schemas/Company'
+    Links:
+      description: Links for next, previous and current record
+      properties:
+        prev:
+          type: string
+        self:
+          type: string
+        next:
+          next: string
 
 
