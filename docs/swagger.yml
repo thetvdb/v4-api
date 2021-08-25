@@ -1374,6 +1374,11 @@ paths:
             type: string
             enum: [ create, delete, update ]
             example: movies
+        - description: name
+          in: query
+          name: page
+          schema:
+            type: number
       responses:
         '200':
           description: response
