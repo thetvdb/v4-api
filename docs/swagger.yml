@@ -760,6 +760,8 @@ paths:
                     type: array
                   status:
                     type: string
+                  links:
+                    $ref: '#/components/schemas/Links'
                 type: object
       tags:
         - movies
