@@ -1,689 +1,11 @@
 openapi: 3.0.0
 info:
-  description: Documentation of the TVDB API V4
+  description: Documentation of [TheTVDB](https://thetvdb.com/) API V4. All related information is linked from our [Github repo](https://github.com/thetvdb/v4-api).
   title: TVDB API V4
   version: 4.3.17
 security:
   - bearerAuth: []
 paths:
-  "/artwork/statuses":
-    get:
-      description: returns list of artwork status records
-      operationId: getAllArtworkStatuses
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    items:
-                      $ref: '#/components/schemas/ArtworkStatus'
-                    type: array
-                  status:
-                    type: string
-                type: object
-      tags:
-        - artwork-statuses
-  /artwork/types:
-    get:
-      description: returns list of artworkType records
-      operationId: getAllArtworkTypes
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    items:
-                      $ref: '#/components/schemas/ArtworkType'
-                    type: array
-                  status:
-                    type: string
-                type: object
-      tags:
-        - artwork-types
-  '/artwork/{id}':
-    get:
-      description: Returns artwork base record
-      operationId: getArtworkBase
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/ArtworkBaseRecord'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - artwork
-  '/artwork/{id}/extended':
-    get:
-      description: Returns artwork extended record
-      operationId: getArtworkExtended
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/ArtworkExtendedRecord'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - artwork
-  '/artwork/{id}/translations/{language}':
-    get:
-      description: Returns artwork translation record
-      operationId: getArtworkTranslation
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-        - description: language
-          in: path
-          name: language
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/Translation'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - artwork
-  '/awards/categories/{id}':
-    get:
-      description: Returns a award category base record
-      operationId: getAwardCategory
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/AwardCategoryBaseRecord'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - award-categories
-  '/awards/categories/{id}/extended':
-    get:
-      description: Returns a award category extended record
-      operationId: getAwardCategoryExtended
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/AwardCategoryExtendedRecord'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - award-categories
-  /awards:
-    get:
-      description: returns list of award base records
-      operationId: getAllAwards
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    items:
-                      $ref: '#/components/schemas/AwardBaseRecord'
-                    type: array
-                  status:
-                    type: string
-                type: object
-      tags:
-        - awards
-  '/awards/{id}':
-    get:
-      description: returns an award base record
-      operationId: getAward
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/AwardBaseRecord'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - awards
-  '/awards/{id}/extended':
-    get:
-      description: returns an award extended record
-      operationId: getAwardExtended
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/AwardExtendedRecord'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - awards
-  '/characters/{id}':
-    get:
-      description: Returns character base record
-      operationId: getCharacterBase
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/Character'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - characters
-  /companies:
-    get:
-      description: returns a paginated list of company records
-      operationId: getAllCompanies
-      parameters:
-        - description: name
-          in: query
-          name: page
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    items:
-                      $ref: '#/components/schemas/Company'
-                    type: array
-                  status:
-                    type: string
-                type: object
-      tags:
-        - companies
-  '/companies/types':
-    get:
-      description: returns all company type records
-      operationId: getCompanyTypes
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/CompanyType'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - companies
-  '/companies/{id}':
-    get:
-      description: returns a company record
-      operationId: getCompany
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/Company'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - companies
-  /content/ratings:
-    get:
-      description: returns list content rating records
-      operationId: getAllContentRatings
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    items:
-                      $ref: '#/components/schemas/ContentRating'
-                    type: array
-                  status:
-                    type: string
-                type: object
-      tags:
-        - content-ratings
-  /countries:
-    get:
-      description: returns list of country records
-      operationId: getAllCountries
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    items:
-                      $ref: '#/components/schemas/Country'
-                    type: array
-                  status:
-                    type: string
-                type: object
-      tags:
-        - countries
-  '/entities/types':
-    get:
-      description: returns the active entity types
-      operationId: getEntityTypes
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    items:
-                      $ref: '#/components/schemas/EntityType'
-                    type: array
-                  status:
-                    type: string
-                type: object
-      tags:
-        - entity-types
-  '/episodes/{id}':
-    get:
-      description: Returns episode base record
-      operationId: getEpisodeBase
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/EpisodeBaseRecord'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - episodes
-  '/episodes/{id}/extended':
-    get:
-      description: Returns episode extended record
-      operationId: getEpisodeExtended
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-        - description: meta
-          in: query
-          name: meta
-          required: false
-          schema:
-            type: string
-            enum: [translations]
-            example: translations
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/EpisodeExtendedRecord'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - episodes
-  '/episodes/{id}/translations/{language}':
-    get:
-      description: Returns episode translation record
-      operationId: getEpisodeTranslation
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-        - description: language
-          in: path
-          name: language
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/Translation'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - episodes
-  '/lists/{id}/translations/{language}':
-    get:
-      description: Returns list translation record
-      operationId: getListTranslation
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-        - description: language
-          in: path
-          name: language
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/Translation'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - lists
-  /genders:
-    get:
-      description: returns list of gender records
-      operationId: getAllGenders
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    items:
-                      $ref: '#/components/schemas/Gender'
-                    type: array
-                  status:
-                    type: string
-                type: object
-      tags:
-        - genders
-  /genres:
-    get:
-      description: returns list of genre records
-      operationId: getAllGenres
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    items:
-                      $ref: '#/components/schemas/GenreBaseRecord'
-                    type: array
-                  status:
-                    type: string
-                type: object
-      tags:
-        - genres
-  '/genres/{id}':
-    get:
-      description: Returns genre record
-      operationId: getGenreBase
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/GenreBaseRecord'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - genres
-  /languages:
-    get:
-      description: returns list of language records
-      operationId: getAllLanguages
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    items:
-                      $ref: '#/components/schemas/Language'
-                    type: array
-                  status:
-                    type: string
-                type: object
-      tags:
-        - languages
-  /lists:
-    get:
-      description: returns list of list base records
-      operationId: getAllLists
-      parameters:
-        - description: page number
-          in: query
-          name: page
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    items:
-                      $ref: '#/components/schemas/ListBaseRecord'
-                    type: array
-                  status:
-                    type: string
-                type: object
-      tags:
-        - lists
-  '/lists/{id}':
-    get:
-      description: returns an list base record
-      operationId: getList
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/ListBaseRecord'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - lists
-  '/lists/{id}/extended':
-    get:
-      description: returns a list extended record
-      operationId: getListExtended
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/ListExtendedRecord'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - lists
   /login:
     post:
       summary: create an auth token
@@ -716,11 +38,95 @@ paths:
                     type: string
                 type: object
       tags:
-        - login
-  /movies/statuses:
+        - Login
+  '/artwork/{id}':
     get:
-      description: returns list of status records
-      operationId: getAllMovieStatuses
+      description: Returns a single artwork base record.
+      operationId: getArtworkBase
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response 
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ArtworkBaseRecord'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Artwork
+
+  '/artwork/{id}/extended':
+    get:
+      description: Returns a single artwork extended record.
+      operationId: getArtworkExtended
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ArtworkExtendedRecord'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Artwork
+        
+  '/artwork/{id}/translations/{language}':
+    get:
+      description: Returns a single artwork translation record.
+      operationId: getArtworkTranslation
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+        - description: language
+          in: path
+          name: language
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Translation'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Artwork
+        
+  '/artwork/statuses':
+    get:
+      description: Returns list of artwork status records.
+      operationId: getAllArtworkStatuses
       responses:
         '200':
           description: response
@@ -730,13 +136,603 @@ paths:
                 properties:
                   data:
                     items:
-                      $ref: '#/components/schemas/Status'
+                      $ref: '#/components/schemas/ArtworkStatus'
                     type: array
                   status:
                     type: string
                 type: object
       tags:
-        - movie-statuses
+        - Artwork Statuses
+        
+  '/artwork/types':
+    get:
+      description: Returns a list of artworkType records
+      operationId: getAllArtworkTypes
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/ArtworkType'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Artwork Types
+        
+  /awards:
+    get:
+      description: Returns a list of award base records
+      operationId: getAllAwards
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/AwardBaseRecord'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Awards
+
+  '/awards/{id}':
+    get:
+      description: Returns a single award base record
+      operationId: getAward
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AwardBaseRecord'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Awards
+        
+  '/awards/{id}/extended':
+    get:
+      description: Returns a single award extended record
+      operationId: getAwardExtended
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AwardExtendedRecord'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Awards
+        
+  '/awards/categories/{id}':
+    get:
+      description: Returns a single award category base record
+      operationId: getAwardCategory
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AwardCategoryBaseRecord'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Award Categories
+        
+  '/awards/categories/{id}/extended':
+    get:
+      description: Returns a single award category extended record
+      operationId: getAwardCategoryExtended
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AwardCategoryExtendedRecord'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Award Categories
+
+  '/characters/{id}':
+    get:
+      description: Returns character base record
+      operationId: getCharacterBase
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Character'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Characters
+  /companies:
+    get:
+      description: returns a paginated list of company records
+      operationId: getAllCompanies
+      parameters:
+        - description: name
+          in: query
+          name: page
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/Company'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Companies
+  '/companies/types':
+    get:
+      description: returns all company type records
+      operationId: getCompanyTypes
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CompanyType'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Companies
+  '/companies/{id}':
+    get:
+      description: returns a company record
+      operationId: getCompany
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Company'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Companies
+  /content/ratings:
+    get:
+      description: returns list content rating records
+      operationId: getAllContentRatings
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/ContentRating'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Content Ratings
+  /countries:
+    get:
+      description: returns list of country records
+      operationId: getAllCountries
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/Country'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Countries
+  '/entities/types':
+    get:
+      description: returns the active entity types
+      operationId: getEntityTypes
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/EntityType'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Entity Types
+  '/episodes/{id}':
+    get:
+      description: Returns episode base record
+      operationId: getEpisodeBase
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/EpisodeBaseRecord'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Episodes
+  '/episodes/{id}/extended':
+    get:
+      description: Returns episode extended record
+      operationId: getEpisodeExtended
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+        - description: meta
+          in: query
+          name: meta
+          required: false
+          schema:
+            type: string
+            enum: [translations]
+            example: translations
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/EpisodeExtendedRecord'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Episodes
+  '/episodes/{id}/translations/{language}':
+    get:
+      description: Returns episode translation record
+      operationId: getEpisodeTranslation
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+        - description: language
+          in: path
+          name: language
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Translation'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Episodes
+
+  /genders:
+    get:
+      description: returns list of gender records
+      operationId: getAllGenders
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/Gender'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Genders
+        
+  /genres:
+    get:
+      description: returns list of genre records
+      operationId: getAllGenres
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/GenreBaseRecord'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Genres
+        
+  '/genres/{id}':
+    get:
+      description: Returns genre record
+      operationId: getGenreBase
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GenreBaseRecord'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Genres
+        
+  /languages:
+    get:
+      description: returns list of language records
+      operationId: getAllLanguages
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/Language'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Languages
+  /lists:
+    get:
+      description: returns list of list base records
+      operationId: getAllLists
+      parameters:
+        - description: page number
+          in: query
+          name: page
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/ListBaseRecord'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Lists
+        
+  '/lists/{id}':
+    get:
+      description: returns an list base record
+      operationId: getList
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ListBaseRecord'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Lists
+  '/lists/{id}/extended':
+    get:
+      description: returns a list extended record
+      operationId: getListExtended
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ListExtendedRecord'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Lists
+  '/lists/{id}/translations/{language}':
+    get:
+      description: Returns list translation record
+      operationId: getListTranslation
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+        - description: language
+          in: path
+          name: language
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Translation'
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Lists
+  
   /movies:
     get:
       description: returns list of movie base records
@@ -762,7 +758,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - movies
+        - Movies
   '/movies/{id}':
     get:
       description: Returns movie base record
@@ -787,7 +783,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - movies
+        - Movies
   '/movies/{id}/extended':
     get:
       description: Returns movie extended record
@@ -820,7 +816,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - movies
+        - Movies
   '/movies/{id}/translations/{language}':
     get:
       description: Returns movie translation record
@@ -851,11 +847,11 @@ paths:
                     type: string
                 type: object
       tags:
-        - movies
-  /people/types:
+        - Movies
+  /movies/statuses:
     get:
-      description: returns list of peopleType records
-      operationId: getAllPeopleTypes
+      description: returns list of status records
+      operationId: getAllMovieStatuses
       responses:
         '200':
           description: response
@@ -865,13 +861,14 @@ paths:
                 properties:
                   data:
                     items:
-                      $ref: '#/components/schemas/PeopleType'
+                      $ref: '#/components/schemas/Status'
                     type: array
                   status:
                     type: string
                 type: object
       tags:
-        - people-types
+        - Movie Statuses
+
   '/people/{id}':
     get:
       description: Returns people base record
@@ -896,7 +893,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - people
+        - People
   '/people/{id}/extended':
     get:
       description: Returns people extended record
@@ -929,7 +926,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - people
+        - People
   '/people/{id}/translations/{language}':
     get:
       description: Returns people translation record
@@ -960,7 +957,28 @@ paths:
                     type: string
                 type: object
       tags:
-        - people
+        - People
+  /people/types:
+    get:
+      description: returns list of peopleType records
+      operationId: getAllPeopleTypes
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/PeopleType'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - People Types
+        
   /search:
     get:
       description: Returns a search result record
@@ -1011,7 +1029,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - search
+        - Search
   /seasons:
     get:
       description: returns list of seasons base records
@@ -1037,7 +1055,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - seasons
+        - Seasons
   '/seasons/{id}':
     get:
       description: Returns season base record
@@ -1062,7 +1080,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - seasons
+        - Seasons
   '/seasons/{id}/extended':
     get:
       description: Returns season extended record
@@ -1087,7 +1105,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - seasons
+        - Seasons
   '/seasons/types':
     get:
       description: Returns season type records
@@ -1105,7 +1123,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - seasons
+        - Seasons
   '/seasons/{id}/translations/{language}':
     get:
       description: Returns season translation record
@@ -1136,7 +1154,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - seasons
+        - Seasons
   /series:
     get:
       description: returns list of series base records
@@ -1162,27 +1180,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - series
-  /series/statuses:
-    get:
-      description: returns list of status records
-      operationId: getAllSeriesStatuses
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    items:
-                      $ref: '#/components/schemas/Status'
-                    type: array
-                  status:
-                    type: string
-                type: object
-      tags:
-        - series-statuses
+        - Series
   '/series/{id}':
     get:
       description: Returns series base record
@@ -1207,7 +1205,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - series
+        - Series
   '/series/{id}/extended':
     get:
       description: Returns series extended record
@@ -1240,7 +1238,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - series
+        - Series
   '/series/{id}/episodes/{season-type}':
     get:
       description: Returns series episodes from the specified season type, default returns the episodes in the series default season type
@@ -1298,7 +1296,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - series
+        - Series
   '/series/{id}/translations/{language}':
     get:
       description: Returns series translation record
@@ -1329,7 +1327,27 @@ paths:
                     type: string
                 type: object
       tags:
-        - series
+        - Series
+  /series/statuses:
+    get:
+      description: returns list of status records
+      operationId: getAllSeriesStatuses
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/Status'
+                    type: array
+                  status:
+                    type: string
+                type: object
+      tags:
+        - Series Statuses
   /sources/types:
     get:
       description: returns list of sourceType records
@@ -1349,7 +1367,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - source-types
+        - Source Types
   /updates:
     get:
       description: returns updated entities
@@ -1389,7 +1407,7 @@ paths:
                     type: string
                 type: object
       tags:
-        - updates
+        - Updates
 
 servers:
   - url: 'https://api4.thetvdb.com/v4'
@@ -1401,14 +1419,16 @@ components:
       bearerFormat: JWT
   schemas:
     Alias:
-      description: An alias model
+      description: An alias model, which can be associated with a series, season, movie, person, or list.
       properties:
         language:
           type: string
-          x-go-name: Language
+          maximum: 4
+          description: A 3-4 character string indicating the language of the alias, as defined in Language.
         name:
           type: string
-          x-go-name: Name
+          maximum: 100
+          description: A string containing the alias itself.
       type: object
     ArtworkBaseRecord:
       description: base artwork record
@@ -2924,6 +2944,3 @@ components:
         specialEffects:
             type: array
             $ref: '#/components/schemas/Company'
-
-
-
