@@ -8,7 +8,7 @@ security:
 paths:
   /login:
     post:
-      summary: create an auth token
+      summary: create an auth token. The token has one month valition length.
       requestBody:
         content:
           application/json:
@@ -756,6 +756,8 @@ paths:
                     type: array
                   status:
                     type: string
+                  links:
+                    $ref: '#/components/schemas/Links'
                 type: object
       tags:
         - Movies
@@ -1178,6 +1180,8 @@ paths:
                     type: array
                   status:
                     type: string
+                  links:
+                    $ref: '#/components/schemas/Links'
                 type: object
       tags:
         - Series
@@ -1275,6 +1279,12 @@ paths:
               value: alternate
             regional:
               value: regional
+        - in: query
+          name: season
+          required: false
+          schema:
+            type: integer
+            default: 0
       responses:
         '200':
           description: response
@@ -1390,8 +1400,13 @@ paths:
           required: false
           schema:
             type: string
-            enum: [ create, delete, update ]
+            enum: [ delete, update ]
             example: movies
+        - description: name
+          in: query
+          name: page
+          schema:
+            type: number
       responses:
         '200':
           description: response
@@ -1405,7 +1420,10 @@ paths:
                     type: array
                   status:
                     type: string
+                  links:
+                    $ref: '#/components/schemas/Links'
                 type: object
+
       tags:
         - Updates
 
@@ -2400,6 +2418,9 @@ components:
           format: int64
           type: integer
           x-go-name: Type
+        sourceName:
+          type: string
+          x-go-name: SourceName
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SearchResult:
@@ -2462,6 +2483,29 @@ components:
           type: string
         year:
           type: string
+        thumbnail:
+          type: string
+        poster:
+          type: string
+        translations:
+          items:
+            $ref: '#/components/schemas/TranslationSimple'
+          type: array
+        is_official:
+          type: boolean
+        remoteIds:
+          items:
+            $ref: '#/components/schemas/RemoteID'
+          type: array
+          x-go-name: RemoteIDs
+        network:
+          type: string
+        title:
+          type: string
+        overviews:
+          items:
+            $ref: '#/components/schemas/TranslationSimple'
+          type: array
       type: object
     SeasonBaseRecord:
       description: season genre record
@@ -2678,7 +2722,7 @@ components:
           x-go-name: Aliases
         artworks:
           items:
-            $ref: '#/components/schemas/ArtworkBaseRecord'
+            $ref: '#/components/schemas/ArtworkExtendedRecord'
           type: array
           x-go-name: Artworks
         characters:
@@ -2892,6 +2936,13 @@ components:
           type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
+    TranslationSimple:
+      description: translation simple record
+      properties:
+        language:
+          type: string
+          x-go-name: Language
+      type: object
     TagOptionEntity:
       description: a entity with selected tag option
       type: object
@@ -2942,5 +2993,14 @@ components:
           type: array
           $ref: '#/components/schemas/Company'
         specialEffects:
-            type: array
-            $ref: '#/components/schemas/Company'
+          type: array
+          $ref: '#/components/schemas/Company'
+    Links:
+      description: Links for next, previous and current record
+      properties:
+        prev:
+          type: string
+        self:
+          type: string
+        next:
+          type: string
