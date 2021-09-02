@@ -686,7 +686,7 @@ paths:
         - lists
   /login:
     post:
-      summary: create an auth token
+      summary: create an auth token. The token has one month valition length.
       requestBody:
         content:
           application/json:
