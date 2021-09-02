@@ -1305,6 +1305,68 @@ paths:
                   status:
                     type: string
                 type: object
+  '/series/{id}/episodes/{season-type}/{lang}':
+    get:
+      description: Returns series episodes from the specified season type and language. Default returns the episodes in the series default season type.
+      operationId: getSeriesSeasonEpisodesTranslated
+      parameters:
+        - in: query
+          name: page
+          required: true
+          schema:
+            type: integer
+            default: 0
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+        - description: season-type
+          in: path
+          name: season-type
+          required: true
+          schema:
+            type: string
+          examples:
+            default:
+              value: default
+            official:
+              value: official
+            dvd:
+              value: dvd
+            absolute:
+              value: absolute
+            alternate:
+              value: alternate
+            regional:
+              value: regional
+        - in: path
+          name: lang
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      series:
+                        $ref: '#/components/schemas/SeriesExtendedRecord'
+                      episodes:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/EpisodeBaseRecord'
+
+                  status:
+                    type: string
+                type: object
       tags:
         - Series
   '/series/{id}/translations/{language}':
