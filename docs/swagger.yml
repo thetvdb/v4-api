@@ -1311,7 +1311,7 @@ paths:
       operationId: getSeriesSeasonEpisodesTranslated
       parameters:
         - in: query
-          name: page
+          name: offset
           required: true
           schema:
             type: integer
