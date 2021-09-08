@@ -3181,6 +3181,9 @@ components:
           type: string
         overview:
           type: string
+        tagline:
+          type: string
+          description: Only populated for movie translations.  We disallow taglines without a title.
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     TranslationSimple:
