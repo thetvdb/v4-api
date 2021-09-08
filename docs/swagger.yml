@@ -37,6 +37,8 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: invalid credentials
       tags:
         - Login
   '/artwork/{id}':
@@ -52,7 +54,7 @@ paths:
             type: number
       responses:
         '200':
-          description: response 
+          description: response
           content:
             application/json:
               schema:
@@ -62,6 +64,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid artwork id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Artwork not found
       tags:
         - Artwork
 
@@ -88,41 +96,15 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid artwork id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Artwork not found
       tags:
         - Artwork
-        
-  '/artwork/{id}/translations/{language}':
-    get:
-      description: Returns a single artwork translation record.
-      operationId: getArtworkTranslation
-      parameters:
-        - description: id
-          in: path
-          name: id
-          required: true
-          schema:
-            type: number
-        - description: language
-          in: path
-          name: language
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/Translation'
-                  status:
-                    type: string
-                type: object
-      tags:
-        - Artwork
-        
+
   '/artwork/statuses':
     get:
       description: Returns list of artwork status records.
@@ -141,9 +123,11 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Artwork Statuses
-        
+
   '/artwork/types':
     get:
       description: Returns a list of artworkType records
@@ -162,9 +146,11 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Artwork Types
-        
+
   /awards:
     get:
       description: Returns a list of award base records
@@ -183,6 +169,8 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Awards
 
@@ -209,9 +197,15 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid awards id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Awards not found
       tags:
         - Awards
-        
+
   '/awards/{id}/extended':
     get:
       description: Returns a single award extended record
@@ -235,9 +229,15 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid awards id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Awards not found
       tags:
         - Awards
-        
+
   '/awards/categories/{id}':
     get:
       description: Returns a single award category base record
@@ -261,9 +261,15 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid category id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Category not found
       tags:
         - Award Categories
-        
+
   '/awards/categories/{id}/extended':
     get:
       description: Returns a single award category extended record
@@ -287,6 +293,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid category id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Category not found
       tags:
         - Award Categories
 
@@ -313,6 +325,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid character id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Character not found
       tags:
         - Characters
   /companies:
@@ -339,6 +357,8 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Companies
   '/companies/types':
@@ -359,6 +379,8 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Companies
   '/companies/{id}':
@@ -384,6 +406,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid company id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Company not found
       tags:
         - Companies
   /content/ratings:
@@ -404,6 +432,8 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Content Ratings
   /countries:
@@ -444,6 +474,8 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Entity Types
   '/episodes/{id}':
@@ -469,6 +501,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid episode id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Episode not found
       tags:
         - Episodes
   '/episodes/{id}/extended':
@@ -502,6 +540,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid episode id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Episode not found
       tags:
         - Episodes
   '/episodes/{id}/translations/{language}':
@@ -533,6 +577,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid episode id. Invalid language.
+        '401':
+          description: Unauthorized
+        '404':
+          description: Episode not found
       tags:
         - Episodes
 
@@ -556,7 +606,7 @@ paths:
                 type: object
       tags:
         - Genders
-        
+
   /genres:
     get:
       description: returns list of genre records
@@ -575,9 +625,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
+
       tags:
         - Genres
-        
+
   '/genres/{id}':
     get:
       description: Returns genre record
@@ -601,9 +654,15 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid genre id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Genre not found
       tags:
         - Genres
-        
+
   /languages:
     get:
       description: returns list of language records
@@ -622,6 +681,8 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Languages
   /lists:
@@ -648,9 +709,11 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Lists
-        
+
   '/lists/{id}':
     get:
       description: returns an list base record
@@ -674,6 +737,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid list id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Lists not found
       tags:
         - Lists
   '/lists/{id}/extended':
@@ -699,6 +768,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid list id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Lists not found
       tags:
         - Lists
   '/lists/{id}/translations/{language}':
@@ -730,9 +805,15 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid lists id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Lists not found
       tags:
         - Lists
-  
+
   /movies:
     get:
       description: returns list of movie base records
@@ -759,6 +840,8 @@ paths:
                   links:
                     $ref: '#/components/schemas/Links'
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Movies
   '/movies/{id}':
@@ -784,6 +867,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid movie id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Movie not found
       tags:
         - Movies
   '/movies/{id}/extended':
@@ -817,6 +906,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid movie id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Movie not found
       tags:
         - Movies
   '/movies/{id}/translations/{language}':
@@ -848,6 +943,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid movie id, invalid language.
+        '401':
+          description: Unauthorized
+        '404':
+          description: Movie not found
       tags:
         - Movies
   /movies/statuses:
@@ -868,6 +969,8 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Movie Statuses
 
@@ -894,6 +997,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid people id
+        '401':
+          description: Unauthorized
+        '404':
+          description: People not found
       tags:
         - People
   '/people/{id}/extended':
@@ -927,6 +1036,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid people id
+        '401':
+          description: Unauthorized
+        '404':
+          description: People not found
       tags:
         - People
   '/people/{id}/translations/{language}':
@@ -958,6 +1073,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid people id, invalid language.
+        '401':
+          description: Unauthorized
+        '404':
+          description: People not found
       tags:
         - People
   /people/types:
@@ -980,7 +1101,7 @@ paths:
                 type: object
       tags:
         - People Types
-        
+
   /search:
     get:
       description: Returns a search result record
@@ -1030,6 +1151,8 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Search
   /seasons:
@@ -1056,6 +1179,8 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Seasons
   '/seasons/{id}':
@@ -1081,6 +1206,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid season id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Season not found
       tags:
         - Seasons
   '/seasons/{id}/extended':
@@ -1106,6 +1237,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid seasons id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Season not found
       tags:
         - Seasons
   '/seasons/types':
@@ -1124,6 +1261,8 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Seasons
   '/seasons/{id}/translations/{language}':
@@ -1155,6 +1294,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid season id, language not found.
+        '401':
+          description: Unauthorized
+        '404':
+          description: Season not found
       tags:
         - Seasons
   /series:
@@ -1183,6 +1328,8 @@ paths:
                   links:
                     $ref: '#/components/schemas/Links'
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Series
   '/series/{id}':
@@ -1208,6 +1355,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid sereis id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Sereis not found
       tags:
         - Series
   '/series/{id}/extended':
@@ -1241,6 +1394,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid series id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Series not found
       tags:
         - Series
   '/series/{id}/episodes/{season-type}':
@@ -1301,10 +1460,17 @@ paths:
                         type: array
                         items:
                           $ref: '#/components/schemas/EpisodeBaseRecord'
-
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid series id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Series not found
+      tags:
+        - Series
   '/series/{id}/episodes/{season-type}/{lang}':
     get:
       description: Returns series episodes from the specified season type and language. Default returns the episodes in the series default season type.
@@ -1363,10 +1529,15 @@ paths:
                         type: array
                         items:
                           $ref: '#/components/schemas/EpisodeBaseRecord'
-
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid series id, invalid language.
+        '401':
+          description: Unauthorized
+        '404':
+          description: Series not found
       tags:
         - Series
   '/series/{id}/translations/{language}':
@@ -1398,6 +1569,12 @@ paths:
                   status:
                     type: string
                 type: object
+        '400':
+          description: Invalid series id, invalid language.
+        '401':
+          description: Unauthorized
+        '404':
+          description: Series not found
       tags:
         - Series
   /series/statuses:
@@ -1418,6 +1595,8 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Series Statuses
   /sources/types:
@@ -1438,6 +1617,8 @@ paths:
                   status:
                     type: string
                 type: object
+        '401':
+          description: Unauthorized
       tags:
         - Source Types
   /updates:
@@ -1485,6 +1666,10 @@ paths:
                   links:
                     $ref: '#/components/schemas/Links'
                 type: object
+        '400':
+          description: Invalid since, type param.
+        '401':
+          description: Unauthorized
 
       tags:
         - Updates
