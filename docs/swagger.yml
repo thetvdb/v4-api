@@ -1122,6 +1122,11 @@ paths:
           name: type
           schema:
             type: string
+        - description: restrict results to remote id
+          in: query
+          name: remote_id
+          schema:
+            type: string
         - description: restrict results to a year for movie|series
           in: query
           name: year
