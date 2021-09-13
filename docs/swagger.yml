@@ -3249,8 +3249,6 @@ components:
           format: int64
           type: integer
           x-go-name: ID
-        type:
-          type: string
         name:
           type: string
         description:
