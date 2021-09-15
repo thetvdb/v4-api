@@ -662,7 +662,28 @@ paths:
           description: Genre not found
       tags:
         - Genres
-
+  /inspiration/types:
+    get:
+      description: returns list of inspiration types records
+      operationId: getAllInspirationTypes
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/InspirationType'
+                    type: array
+                  status:
+                    type: string
+                type: object
+        '401':
+          description: Unauthorized
+      tags:
+        - InspirationTypes
   /languages:
     get:
       description: returns list of language records
@@ -3218,6 +3239,21 @@ components:
         type:
           type: string
         typeName:
+          type: string
+        url:
+          type: string
+    InspirationType:
+      description: Movie inspiration type record
+      properties:
+        id:
+          format: int64
+          type: integer
+          x-go-name: ID
+        name:
+          type: string
+        description:
+          type: string
+        reference_name:
           type: string
         url:
           type: string
