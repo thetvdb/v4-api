@@ -1475,6 +1475,12 @@ paths:
           schema:
             type: integer
             default: 0
+        - in: query
+          name: episodeNumber
+          required: false
+          schema:
+            type: integer
+            default: 0
       responses:
         '200':
           description: response
@@ -1495,7 +1501,7 @@ paths:
                     type: string
                 type: object
         '400':
-          description: Invalid series id
+          description: Invalid series id, episodeNumber is not null then season must be present
         '401':
           description: Unauthorized
         '404':
