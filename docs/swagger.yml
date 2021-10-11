@@ -2067,9 +2067,9 @@ components:
       description: A company type record
       type: object
       properties:
-        id:
+        companyTypeId:
           type: integer
-        name:
+        companyTypeName:
           type: string
     ContentRating:
       description: content rating record
