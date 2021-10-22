@@ -3,6 +3,9 @@ We have two models for API access, both that provide funding that allows us to c
 
 To create an API key, create an account and visit the [API keys page on your dashboard](https://www.thetvdb.com/dashboard/account/apikey).
 
+## SSL/TLS
+This API will enforce a minimum SSL/TLS version `TLSv1.2`.  This is supported by all modern programming languages. However if you are using an older version of a modern language, you may need to upgrade your SSL library.
+
 ## Documentation and Assistance
 Before requesting assistance, please review our [API documentation](https://thetvdb.github.io/v4-api/). If you need additional assistance, please use our [support portal](https://support.thetvdb.com/).
 
