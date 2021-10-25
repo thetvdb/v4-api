@@ -361,6 +361,8 @@ paths:
                     type: array
                   status:
                     type: string
+                  links:
+                    $ref: '#/components/schemas/Links'
                 type: object
         '401':
           description: Unauthorized
@@ -735,6 +737,8 @@ paths:
                   status:
                     type: string
                 type: object
+                links:
+                  $ref: '#/components/schemas/Links'
         '401':
           description: Unauthorized
       tags:
