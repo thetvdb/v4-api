@@ -3311,3 +3311,7 @@ components:
           type: string
         next:
           type: string
+        total_items:
+          type: integer
+        page_size:
+          type: integer
