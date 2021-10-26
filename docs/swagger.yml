@@ -3076,6 +3076,10 @@ components:
           type: string
         originalLanguage:
           type: string
+        originalNetwork:
+          $ref: '#/components/schemas/Company'
+        latestNetwork:
+          $ref: '#/components/schemas/Company'
         overviewTranslations:
           items:
             type: string
