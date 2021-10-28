@@ -830,7 +830,9 @@ paths:
               schema:
                 properties:
                   data:
-                    $ref: '#/components/schemas/Translation'
+                    items:
+                      $ref: '#/components/schemas/Translation'
+                    type: array
                   status:
                     type: string
                 type: object
