@@ -361,6 +361,8 @@ paths:
                     type: array
                   status:
                     type: string
+                  links:
+                    $ref: '#/components/schemas/Links'
                 type: object
         '401':
           description: Unauthorized
@@ -734,7 +736,8 @@ paths:
                     type: array
                   status:
                     type: string
-                type: object
+                  links:
+                    $ref: '#/components/schemas/Links'
         '401':
           description: Unauthorized
       tags:
@@ -1481,6 +1484,12 @@ paths:
           schema:
             type: integer
             default: 0
+        - description: airDate of the episode, format is yyyy-mm-dd
+          in: query
+          name: airDate
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: response
@@ -3311,3 +3320,7 @@ components:
           type: string
         next:
           type: string
+        total_items:
+          type: integer
+        page_size:
+          type: integer
