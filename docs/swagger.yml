@@ -2294,6 +2294,10 @@ components:
             $ref: '#/components/schemas/Trailer'
           type: array
           x-go-name: Trailers
+        companies:
+          items:
+            $ref: '#/components/schemas/Companies'
+          type: array
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Gender:
