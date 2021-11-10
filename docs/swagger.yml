@@ -2906,6 +2906,10 @@ components:
             $ref: '#/components/schemas/TagOption'
           type: array
           x-go-name: TagOptions
+        translations:
+          items:
+            $ref: '#/components/schemas/Translation'
+          type: array
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeasonType:
