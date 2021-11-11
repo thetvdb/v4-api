@@ -3072,9 +3072,7 @@ components:
           type: array
           x-go-name: NameTranslations
         companies:
-          items:
             $ref: '#/components/schemas/Companies'
-          type: array
         nextAired:
           type: string
           x-go-name: NextAired
