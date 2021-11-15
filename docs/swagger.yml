@@ -1796,6 +1796,11 @@ components:
           type: integer
         seriesPeopleId:
           type: integer
+        tagOptions:
+          items:
+            $ref: '#/components/schemas/TagOption'
+          type: array
+          x-go-name: TagOptions
         thumbnail:
           type: string
           x-go-name: Thumbnail
@@ -3109,6 +3114,11 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/Status'
+        tags:
+          items:
+            $ref: '#/components/schemas/TagOption'
+          type: array
+          x-go-name: TagOptions
         trailers:
           items:
             $ref: '#/components/schemas/Trailer'
