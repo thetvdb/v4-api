@@ -2926,6 +2926,9 @@ components:
     SeasonType:
       description: season type record
       properties:
+        alternateName:
+          type: string
+          x-go-name: Name
         id:
           format: int64
           type: integer
@@ -2937,6 +2940,7 @@ components:
           format: int64
           type: integer
           x-go-name: Type
+
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeriesAirsDays:
