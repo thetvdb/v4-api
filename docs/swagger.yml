@@ -2298,7 +2298,7 @@ components:
           x-go-name: Trailers
         companies:
           items:
-            $ref: '#/components/schemas/Companies'
+            $ref: '#/components/schemas/Company'
           type: array
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
@@ -3079,7 +3079,7 @@ components:
           x-go-name: NameTranslations
         companies:
           items:
-            $ref: '#/components/schemas/Companies'
+            $ref: '#/components/schemas/Company'
           type: array
         nextAired:
           type: string
