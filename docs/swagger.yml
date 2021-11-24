@@ -2029,9 +2029,6 @@ components:
           format: int64
           type: integer
           x-go-name: Sort
-        companies:
-          type: object
-          $ref: '#/components/schemas/Companies'
         type:
           format: int64
           type: integer
