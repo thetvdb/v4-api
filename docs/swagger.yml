@@ -3077,7 +3077,7 @@ components:
           x-go-name: NameTranslations
         companies:
           items:
-            $ref: '#/components/schemas/Companies'
+            $ref: '#/components/schemas/Company'
           type: array
         nextAired:
           type: string
