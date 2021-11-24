@@ -2293,7 +2293,7 @@ components:
           x-go-name: TagOptions
         trailers:
           items:
-            $ref: '#/components/schesmas/Trailer'
+            $ref: '#/components/schemas/Trailer'
           type: array
           x-go-name: Trailers
         companies:
