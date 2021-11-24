@@ -1796,6 +1796,11 @@ components:
           type: integer
         seriesPeopleId:
           type: integer
+        tagOptions:
+          items:
+            $ref: '#/components/schemas/TagOption'
+          type: array
+          x-go-name: TagOptions
         thumbnail:
           type: string
           x-go-name: Thumbnail
@@ -2072,6 +2077,9 @@ components:
         slug:
           type: string
           x-go-name: Slug
+        companies:
+          type: object
+          $ref: '#/components/schemas/Companies'
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     CompanyType:
@@ -3115,6 +3123,11 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/Status'
+        tags:
+          items:
+            $ref: '#/components/schemas/TagOption'
+          type: array
+          x-go-name: TagOptions
         trailers:
           items:
             $ref: '#/components/schemas/Trailer'
