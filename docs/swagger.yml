@@ -1503,7 +1503,7 @@ paths:
                     type: object
                     properties:
                       series:
-                        $ref: '#/components/schemas/SeriesExtendedRecord'
+                        $ref: '#/components/schemas/SeriesBaseRecord'
                       episodes:
                         type: array
                         items:
@@ -2100,6 +2100,8 @@ components:
         name:
           type: string
           x-go-name: Name
+        description:
+          type: string
         country:
           type: string
         contentType:
@@ -2145,8 +2147,8 @@ components:
         name:
           type: string
           x-go-name: Order
-        seriesId:
-          type: integer
+        hasSpecials:
+          type: boolean
       type: object
     EntityUpdate:
       description: entity update record
@@ -2217,6 +2219,11 @@ components:
           type: integer
           x-go-name: SeriesID
         seasonName:
+          type: string
+        lastUpdated:
+          type: integer
+        finaleType:
+          description: season, midseason, or series
           type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
@@ -2308,6 +2315,11 @@ components:
           items:
             $ref: '#/components/schemas/Company'
           type: array
+        lastUpdated:
+          type: integer
+        finaleType:
+          description: season, midseason, or series
+          type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Gender:
@@ -2384,6 +2396,8 @@ components:
           x-go-name: OverviewTranslations
         url:
           type: string
+        score:
+          type: integer
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     ListExtendedRecord:
@@ -2465,6 +2479,10 @@ components:
           x-go-name: Slug
         status:
           $ref: '#/components/schemas/Status'
+        runtime:
+          type: integer
+        lastUpdated:
+          type: integer
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     MovieExtendedRecord:
@@ -2629,6 +2647,16 @@ components:
           type: string
         name:
           type: string
+        nameTranslations:
+          items:
+            type: string
+          type: array
+          x-go-name: NameTranslations
+        overviewTranslations:
+          items:
+            type: string
+          type: array
+          x-go-name: OverviewTranslations
         score:
           format: int64
           type: integer
@@ -2754,19 +2782,21 @@ components:
           type: string
         director:
           type: string
-        extendedTitle:
-          type: string
         genres:
           items:
             type: string
           type: array
+        objectID:
+          type: string
+        slug:
+          type: string
         id:
           type: string
-        imageUrl:
+        image_url:
           type: string
         name:
           type: string
-        nameTranslated:
+        name_translated :
           type: string
         officialList:
           type: string
@@ -2780,9 +2810,7 @@ components:
           items:
             type: string
           type: array
-        primaryLanguage:
-          type: string
-        primaryType:
+        primary_language:
           type: string
         status:
           type: string
@@ -2807,7 +2835,7 @@ components:
           type: array
         is_official:
           type: boolean
-        remoteIds:
+        remote_ids:
           items:
             $ref: '#/components/schemas/RemoteID'
           type: array
@@ -2824,10 +2852,6 @@ components:
     SeasonBaseRecord:
       description: season genre record
       properties:
-        abbreviation:
-          type: string
-        country:
-          type: string
         id:
           type: integer
         image:
@@ -2850,12 +2874,13 @@ components:
             type: string
           type: array
           x-go-name: OverviewTranslations
+        companies:
+          type: object
+          $ref: '#/components/schemas/Companies'
         seriesId:
           format: int64
           type: integer
           x-go-name: SeriesID
-        slug:
-          type: string
         type:
           $ref: '#/components/schemas/SeasonType'
       type: object
@@ -2937,8 +2962,7 @@ components:
           type: string
           x-go-name: Name
         type:
-          format: int64
-          type: integer
+          type: string
           x-go-name: Type
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
@@ -3022,6 +3046,10 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/Status'
+        lastUpdated:
+          type: string
+        averageRuntime:
+          type: integer
         episodes:
           items:
             $ref: '#/components/schemas/EpisodeBaseRecord'
