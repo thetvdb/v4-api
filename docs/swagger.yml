@@ -2080,8 +2080,29 @@ components:
         companies:
           type: object
           $ref: '#/components/schemas/Companies'
+        parentCompany:
+          type: object
+          $ref: '#/components/schemas/ParentCompany'
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
+    ParentCompany:
+      description: A parent company record
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        relation:
+          type: object
+          $ref: '#/components/schemas/CompanyRelationShip'
+    CompanyRelationShip:
+      description: A company relationship
+      properties:
+        id:
+          type: integer
+        typeName:
+          type: string
     CompanyType:
       description: A company type record
       type: object
