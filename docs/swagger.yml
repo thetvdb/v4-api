@@ -2029,9 +2029,6 @@ components:
           format: int64
           type: integer
           x-go-name: Sort
-        companies:
-          type: object
-          $ref: '#/components/schemas/Companies'
         type:
           format: int64
           type: integer
@@ -2080,9 +2077,6 @@ components:
         slug:
           type: string
           x-go-name: Slug
-        companies:
-          type: object
-          $ref: '#/components/schemas/Companies'
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     CompanyType:
