@@ -3379,7 +3379,7 @@ components:
           type: string
         next:
           type: string
-        total_items:
+        totalItems:
           type: integer
-        page_size:
+        pageSize:
           type: integer
