@@ -2426,6 +2426,10 @@ components:
           format: int64
           type: integer
           x-go-name: ID
+        image:
+          type: string
+        imageIsFallback:
+          type: boolean
         isOfficial:
           type: boolean
           x-go-name: IsOfficial
