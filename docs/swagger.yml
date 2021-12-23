@@ -2023,6 +2023,8 @@ components:
           x-go-name: OverviewTranslations
         peopleId:
           type: integer
+        personImgURL:
+          type: string
         seriesId:
           type: integer
         sort:
@@ -2083,8 +2085,29 @@ components:
         companies:
           type: object
           $ref: '#/components/schemas/Companies'
+        parentCompany:
+          type: object
+          $ref: '#/components/schemas/ParentCompany'
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
+    ParentCompany:
+      description: A parent company record
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        relation:
+          type: object
+          $ref: '#/components/schemas/CompanyRelationShip'
+    CompanyRelationShip:
+      description: A company relationship
+      properties:
+        id:
+          type: integer
+        typeName:
+          type: string
     CompanyType:
       description: A company type record
       type: object
@@ -2219,6 +2242,8 @@ components:
           format: int64
           type: integer
           x-go-name: SeriesID
+        seasonName:
+          type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     EpisodeExtendedRecord:
@@ -2305,6 +2330,10 @@ components:
             $ref: '#/components/schemas/Trailer'
           type: array
           x-go-name: Trailers
+        companies:
+          items:
+            $ref: '#/components/schemas/Company'
+          type: array
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Gender:
@@ -2400,6 +2429,10 @@ components:
           format: int64
           type: integer
           x-go-name: ID
+        image:
+          type: string
+        imageIsFallback:
+          type: boolean
         isOfficial:
           type: boolean
           x-go-name: IsOfficial
