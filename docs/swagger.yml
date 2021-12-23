@@ -2023,6 +2023,8 @@ components:
           x-go-name: OverviewTranslations
         peopleId:
           type: integer
+        personImgURL:
+          type: string
         seriesId:
           type: integer
         sort:
@@ -2424,6 +2426,10 @@ components:
           format: int64
           type: integer
           x-go-name: ID
+        image:
+          type: string
+        imageIsFallback:
+          type: boolean
         isOfficial:
           type: boolean
           x-go-name: IsOfficial
@@ -3379,7 +3385,7 @@ components:
           type: string
         next:
           type: string
-        total_items:
+        totalItems:
           type: integer
-        page_size:
+        pageSize:
           type: integer
