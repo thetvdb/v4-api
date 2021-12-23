@@ -2221,7 +2221,7 @@ components:
         seasonName:
           type: string
         lastUpdated:
-          type: integer
+          type: string
         finaleType:
           description: season, midseason, or series
           type: string
