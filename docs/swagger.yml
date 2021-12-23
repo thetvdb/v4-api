@@ -2316,7 +2316,7 @@ components:
             $ref: '#/components/schemas/Company'
           type: array
         lastUpdated:
-          type: integer
+          type: string
         finaleType:
           description: season, midseason, or series
           type: string
@@ -2482,7 +2482,7 @@ components:
         runtime:
           type: integer
         lastUpdated:
-          type: integer
+          type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     MovieExtendedRecord:
