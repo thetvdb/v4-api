@@ -2023,6 +2023,8 @@ components:
           x-go-name: OverviewTranslations
         peopleId:
           type: integer
+        personImgURL:
+          type: string
         seriesId:
           type: integer
         sort:
