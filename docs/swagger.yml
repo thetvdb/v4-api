@@ -3160,7 +3160,7 @@ components:
           x-go-name: Trailers
         translations:
           items:
-            $ref: '#/components/schemas/Translation'
+            $ref: '#/components/schemas/TranslationExtended'
           type: array
 
       type: object
@@ -3307,6 +3307,22 @@ components:
         language:
           type: string
           x-go-name: Language
+      type: object
+    TranslationExtended:
+      description: translation extended record
+      properties:
+        nameTranslations:
+          items:
+            $ref: '#/components/schemas/Translation'
+          type: array
+        overviewTranslations:
+          items:
+            $ref: '#/components/schemas/Translation'
+          type: array
+        alias:
+          items:
+            type: string
+          type: array
       type: object
     TagOptionEntity:
       description: a entity with selected tag option
