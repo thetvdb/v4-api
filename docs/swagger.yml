@@ -7,7 +7,7 @@ info:
     2. Executing this call will provide you with a bearer token, which is valid for 1 month.
     3. Provide your bearer token for subsequent API calls by clicking Authorize below or including in the header of all direct API calls: `Authorization: Bearer [your-token]`
   title: TVDB API V4
-  version: 4.4.0
+  version: 4.5.0
 security:
   - bearerAuth: []
 paths:
