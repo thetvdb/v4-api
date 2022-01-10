@@ -2743,6 +2743,8 @@ components:
           format: int64
           type: integer
           x-go-name: Score
+        slug:
+          type: string
         tagOptions:
           items:
             $ref: '#/components/schemas/TagOption'
