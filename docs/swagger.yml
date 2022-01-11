@@ -2202,6 +2202,12 @@ components:
       properties:
         aired:
           type: string
+        airsAfterSeason:
+          type: integer
+        airsBeforeEpisode:
+          type: integer
+        airsBeforeSeason:
+          type: integer
         id:
           format: int64
           type: integer
@@ -2255,12 +2261,6 @@ components:
       properties:
         aired:
           type: string
-        airsAfterSeason:
-          type: integer
-        airsBeforeEpisode:
-          type: integer
-        airsBeforeSeason:
-          type: integer
         awards:
           items:
             $ref: '#/components/schemas/AwardBaseRecord'
