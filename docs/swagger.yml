@@ -3377,7 +3377,7 @@ components:
           x-go-name: ID
         type:
           type: string
-        typeName:
+        type_name:
           type: string
         url:
           type: string
