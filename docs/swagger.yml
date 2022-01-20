@@ -1521,7 +1521,7 @@ paths:
         - Series
   '/series/{id}/episodes/{season-type}/{lang}':
     get:
-      description: Returns series episodes from the specified season type and language. Default returns the episodes in the series default season type.
+      description: Returns series base record with episodes from the specified season type and language. Default returns the episodes in the series default season type.
       operationId: getSeriesSeasonEpisodesTranslated
       parameters:
         - in: query
@@ -1572,11 +1572,7 @@ paths:
                     type: object
                     properties:
                       series:
-                        $ref: '#/components/schemas/SeriesExtendedRecord'
-                      episodes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/EpisodeBaseRecord'
+                        $ref: '#/components/schemas/SeriesBaseRecord'
                   status:
                     type: string
                 type: object
@@ -1796,6 +1792,8 @@ components:
           type: integer
         seriesPeopleId:
           type: integer
+        status:
+          $ref: '#/components/schemas/ArtworkStatus'
         tagOptions:
           items:
             $ref: '#/components/schemas/TagOption'
@@ -2025,12 +2023,19 @@ components:
           type: integer
         personImgURL:
           type: string
+        peopleType:
+          type: string
         seriesId:
           type: integer
         sort:
           format: int64
           type: integer
           x-go-name: Sort
+        tagOptions:
+          items:
+            $ref: '#/components/schemas/TagOption'
+          type: array
+          x-go-name: TagOptions
         type:
           format: int64
           type: integer
@@ -2079,12 +2084,14 @@ components:
         slug:
           type: string
           x-go-name: Slug
-        companies:
-          type: object
-          $ref: '#/components/schemas/Companies'
         parentCompany:
           type: object
           $ref: '#/components/schemas/ParentCompany'
+        tagOptions:
+          items:
+            $ref: '#/components/schemas/TagOption'
+          type: array
+          x-go-name: TagOptions
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     ParentCompany:
@@ -2229,6 +2236,8 @@ components:
           x-go-name: NameTranslations
         number:
           type: integer
+        overview:
+          type: string
         overviewTranslations:
           items:
             type: string
@@ -2261,6 +2270,12 @@ components:
       properties:
         aired:
           type: string
+        airsAfterSeason:
+          type: integer
+        airsBeforeEpisode:
+          type: integer
+        airsBeforeSeason:
+          type: integer
         awards:
           items:
             $ref: '#/components/schemas/AwardBaseRecord'
@@ -2271,6 +2286,10 @@ components:
             $ref: '#/components/schemas/Character'
           type: array
           x-go-name: Characters
+        companies:
+          items:
+            $ref: '#/components/schemas/Company'
+          type: array
         contentRatings:
           items:
             $ref: '#/components/schemas/ContentRating'
@@ -2296,9 +2315,18 @@ components:
           type: array
           x-go-name: NameTranslations
         network:
-          $ref: '#/components/schemas/NetworkBaseRecord'
+          items:
+            $ref: '#/components/schemas/Company'
+          type: array
+        nominations:
+          items:
+            $ref: '#/components/schemas/AwardNomineeBaseRecord'
+          type: array
+          x-go-name: Nominees
         number:
           type: integer
+        overview:
+          type: string
         overviewTranslations:
           items:
             type: string
@@ -2324,6 +2352,10 @@ components:
           format: int64
           type: integer
           x-go-name: SeriesID
+        studios:
+          items:
+            $ref: '#/components/schemas/Company'
+          type: array
         tagOptions:
           items:
             $ref: '#/components/schemas/TagOption'
@@ -2334,10 +2366,6 @@ components:
             $ref: '#/components/schemas/Trailer'
           type: array
           x-go-name: Trailers
-        companies:
-          items:
-            $ref: '#/components/schemas/Company'
-          type: array
         lastUpdated:
           type: string
         finaleType:
@@ -2400,6 +2428,10 @@ components:
           format: int64
           type: integer
           x-go-name: ID
+        image:
+          type: string
+        imageIsFallback:
+          type: boolean
         isOfficial:
           type: boolean
           x-go-name: IsOfficial
@@ -2544,10 +2576,16 @@ components:
             $ref: '#/components/schemas/Character'
           type: array
           x-go-name: Characters
-        lists:
+        companies:
+          type: object
+          $ref: '#/components/schemas/Companies'
+        contentRatings:
           items:
-            $ref: '#/components/schemas/ListBaseRecord'
+            $ref: '#/components/schemas/ContentRating'
           type: array
+        first_release:
+          type: object
+          $ref: '#/components/schemas/Release'
         genres:
           items:
             $ref: '#/components/schemas/GenreBaseRecord'
@@ -2560,6 +2598,17 @@ components:
         image:
           type: string
           x-go-name: Image
+        inspirations:
+          items:
+            $ref: '#/components/schemas/Inspiration'
+          type: array
+          x-go-name: Inspirations
+        lastUpdated:
+          type: string
+        lists:
+          items:
+            $ref: '#/components/schemas/ListBaseRecord'
+          type: array
         name:
           type: string
           x-go-name: Name
@@ -2577,6 +2626,11 @@ components:
             type: string
           type: array
           x-go-name: OverviewTranslations
+        production_countries:
+          items:
+            $ref: '#/components/schemas/ProductionCountry'
+          type: array
+          x-go-name: ProductionCountries
         releases:
           items:
             $ref: '#/components/schemas/Release'
@@ -2587,10 +2641,8 @@ components:
             $ref: '#/components/schemas/RemoteID'
           type: array
           x-go-name: RemoteIDs
-        contentRatings:
-          items:
-            $ref: '#/components/schemas/ContentRating'
-          type: array
+        runtime:
+          type: integer
         score:
           format: double
           type: number
@@ -2598,6 +2650,11 @@ components:
         slug:
           type: string
           x-go-name: Slug
+        spoken_languages:
+          items:
+            type: string
+          type: array
+          x-go-name: SpokenLanguages
         status:
           $ref: '#/components/schemas/Status'
         studios:
@@ -2620,42 +2677,6 @@ components:
             $ref: '#/components/schemas/Trailer'
           type: array
           x-go-name: Trailers
-        inspirations:
-          items:
-            $ref: '#/components/schemas/Inspiration'
-          type: array
-          x-go-name: Inspirations
-        productionCountries:
-          items:
-            $ref: '#/components/schemas/ProductionCountry'
-          type: array
-          x-go-name: ProductionCountries
-        spokenLanguages:
-          items:
-            type: string
-          type: array
-          x-go-name: SpokenLanguages
-        firstRelease:
-          type: object
-          $ref: '#/components/schemas/Release'
-        companies:
-          type: object
-          $ref: '#/components/schemas/Companies'
-      type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
-    NetworkBaseRecord:
-      description: base network record
-      properties:
-        abbreviation:
-          type: string
-        country:
-          type: string
-        id:
-          type: integer
-        name:
-          type: string
-        slug:
-          type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     PeopleBaseRecord:
@@ -2729,6 +2750,16 @@ components:
           type: string
         name:
           type: string
+        nameTranslations:
+          items:
+            type: string
+          type: array
+          x-go-name: NameTranslations
+        overviewTranslations:
+          items:
+            type: string
+          type: array
+          x-go-name: OverviewTranslations
         races:
           items:
             $ref: '#/components/schemas/Race'
@@ -2811,39 +2842,68 @@ components:
           type: string
         director:
           type: string
+        first_air_time:
+          type: string
         genres:
           items:
             type: string
           type: array
-        objectID:
-          type: string
-        slug:
-          type: string
         id:
           type: string
         image_url:
           type: string
         name:
           type: string
-        name_translated :
+        is_official:
+          type: boolean
+        name_translated:
+          type: string
+        network:
+          type: string
+        objectID:
           type: string
         officialList:
           type: string
         overview:
           type: string
+        overviews:
+          items:
+            $ref: '#/components/schemas/TranslationSimple'
+          type: array
         overview_translated:
           items:
             type: string
           type: array
+        poster:
+          type: string
         posters:
           items:
             type: string
           type: array
         primary_language:
           type: string
+        remote_ids:
+          items:
+            $ref: '#/components/schemas/RemoteID'
+          type: array
+          x-go-name: RemoteIDs
         status:
           type: string
           x-go-name: Status
+        slug:
+          type: string
+        studios:
+          items:
+            type: string
+          type: array
+        title:
+          type: string
+        thumbnail:
+          type: string
+        translations:
+          items:
+            $ref: '#/components/schemas/TranslationSimple'
+          type: array
         translationsWithLang:
           items:
             type: string
@@ -2854,29 +2914,6 @@ components:
           type: string
         year:
           type: string
-        thumbnail:
-          type: string
-        poster:
-          type: string
-        translations:
-          items:
-            $ref: '#/components/schemas/TranslationSimple'
-          type: array
-        is_official:
-          type: boolean
-        remote_ids:
-          items:
-            $ref: '#/components/schemas/RemoteID'
-          type: array
-          x-go-name: RemoteIDs
-        network:
-          type: string
-        title:
-          type: string
-        overviews:
-          items:
-            $ref: '#/components/schemas/TranslationSimple'
-          type: array
       type: object
     SeasonBaseRecord:
       description: season genre record
@@ -2917,13 +2954,14 @@ components:
     SeasonExtendedRecord:
       description: extended season record
       properties:
-        abbreviation:
-          type: string
         artwork:
           items:
             $ref: '#/components/schemas/ArtworkBaseRecord'
           type: array
           x-go-name: Artwork
+        companies:
+          type: object
+          $ref: '#/components/schemas/Companies'
         episodes:
           items:
             $ref: '#/components/schemas/EpisodeBaseRecord'
@@ -2955,20 +2993,13 @@ components:
           format: int64
           type: integer
           x-go-name: SeriesID
-        slug:
-          type: string
         trailers:
           items:
             $ref: '#/components/schemas/Trailer'
           type: array
           x-go-name: Trailers
         type:
-          format: int64
-          type: integer
-          x-go-name: Type
-        companies:
-          type: object
-          $ref: '#/components/schemas/Companies'
+          $ref: '#/components/schemas/SeasonType'
         tagOptions:
           items:
             $ref: '#/components/schemas/TagOption'
@@ -3035,12 +3066,19 @@ components:
             $ref: '#/components/schemas/Alias'
           type: array
           x-go-name: Aliases
+        averageRuntime:
+          type: integer
         country:
           type: string
         defaultSeasonType:
           format: int64
           type: integer
           x-go-name: DefaultSeasonType
+        episodes:
+          items:
+            $ref: '#/components/schemas/EpisodeBaseRecord'
+          type: array
+          x-go-name: Episodes
         firstAired:
           type: string
         id:
@@ -3081,13 +3119,7 @@ components:
           $ref: '#/components/schemas/Status'
         lastUpdated:
           type: string
-        averageRuntime:
-          type: integer
-        episodes:
-          items:
-            $ref: '#/components/schemas/EpisodeBaseRecord'
-          type: array
-          x-go-name: Trailers
+
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeriesExtendedRecord:
@@ -3099,6 +3131,8 @@ components:
           $ref: '#/components/schemas/SeriesAirsDays'
         airsTime:
           type: string
+        airsTimeUTC:
+          type: string
         aliases:
           items:
             $ref: '#/components/schemas/Alias'
@@ -3109,6 +3143,8 @@ components:
             $ref: '#/components/schemas/ArtworkExtendedRecord'
           type: array
           x-go-name: Artworks
+        averageRuntime:
+          type: integer
         characters:
           items:
             $ref: '#/components/schemas/Character'
@@ -3138,6 +3174,8 @@ components:
           type: boolean
           x-go-name: IsOrderRandomized
         lastAired:
+          type: string
+        lastUpdated:
           type: string
         name:
           type: string
@@ -3424,7 +3462,7 @@ components:
         distributor:
           type: array
           $ref: '#/components/schemas/Company'
-        specialEffects:
+        special_effects:
           type: array
           $ref: '#/components/schemas/Company'
     Links:
