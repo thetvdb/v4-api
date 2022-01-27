@@ -1135,7 +1135,7 @@ paths:
 
   /search:
     get:
-      description: Returns a search result record
+      description: Returns a search result record. Searchable attributes include translated names and aliases, record id, and remote ids (IMDB, EIDR), etc.
       operationId: getSearchResults
       parameters:
         - description: additional search query param
