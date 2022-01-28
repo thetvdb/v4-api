@@ -3199,6 +3199,8 @@ components:
           type: string
         originalNetwork:
           $ref: '#/components/schemas/Company'
+        overview:
+          type: string
         latestNetwork:
           $ref: '#/components/schemas/Company'
         overviewTranslations:
