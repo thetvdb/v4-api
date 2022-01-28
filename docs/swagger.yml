@@ -1293,7 +1293,9 @@ paths:
               schema:
                 properties:
                   data:
-                    $ref: '#/components/schemas/SeasonType'
+                    items:
+                      $ref: '#/components/schemas/SeasonType'
+                    type: array
                   status:
                     type: string
                 type: object
