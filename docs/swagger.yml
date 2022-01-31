@@ -1135,40 +1135,73 @@ paths:
 
   /search:
     get:
-      description: Returns a search result record
+      description: Our search index includes series, movies, people, and companies.
       operationId: getSearchResults
       parameters:
-        - description: additional search query param
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: additional search query param
+        - description: The primary search string, which can include the main title for a record including all translations and aliases.
           in: query
           name: query
           schema:
             type: string
-        - description: restrict results to entity type movie|series|person|company
+        - description: Alias of the "query" parameter.  Recommend using query instead as this field will eventually be deprecated.
+          in: query
+          name: q
+          schema:
+            type: string
+        - description: Restrict results to a specific entity type.  Can be movie, series, person, or company.
           in: query
           name: type
           schema:
             type: string
-        - description: restrict results to remote id
-          in: query
-          name: remote_id
-          schema:
-            type: string
-        - description: restrict results to a year for movie|series
+        - description: Restrict results to a specific year. Currently only used for series and movies.
           in: query
           name: year
           schema:
             type: number
-        - description: offset results
+        - description: Restrict results to a specific company (original network, production company, studio, etc).  As an example, "The Walking Dead" would have companies of "AMC", "AMC+", and "Disney+".
+          in: query
+          name: company
+          schema:
+            type: string
+        - description: Restrict results to a specific country of origin. Should contain a 3 character country code. Currently only used for series and movies.
+          in: query
+          name: country
+          schema:
+            type: string
+        - description: Restrict results to a specific director.  Generally only used for movies.  Should include the full name of the director, such as "Steven Spielberg".
+          in: query
+          name: director
+          schema:
+            type: string
+        - description: Restrict results to a specific primary language.  Should include the 3 character language code.  Currently only used for series and movies.
+          in: query
+          name: language
+          schema:
+            type: string
+        - description: Restrict results to a specific type of company.  Should include the full name of the type of company, such as "Production Company".  Only used for companies.
+          in: query
+          name: primaryType
+          schema:
+            type: string
+        - description: Restrict results to a specific network.  Used for TV and TV movies, and functions the same as the company parameter with more specificity.
+          in: query
+          name: network
+          schema:
+            type: string
+
+
+        - description: Search for a specific remote id.  Allows searching for an IMDB or EIDR id, for example.
+          in: query
+          name: remote_id
+          schema:
+            type: string
+
+        - description: Offset results.
           in: query
           name: offset
           schema:
             type: number
-        - description: limit results
+        - description: Limit results.
           in: query
           name: limit
           schema:
