@@ -1401,6 +1401,51 @@ paths:
           description: Sereis not found
       tags:
         - Series
+  '/series/{id}/artworks':
+    get:
+      description: Returns series artworks base on language and type.
+      operationId: getSeriesArtworks
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+        - description: lang
+          in: query
+          name: lang
+          required: false
+          schema:
+            type: string
+            example: eng, spa
+        - description: type
+          in: query
+          name: type
+          required: false
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SeriesExtendedRecord'
+                  status:
+                    type: string
+                type: object
+        '400':
+          description: Invalid series id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Series not found
+      tags:
+        - Series
   '/series/{id}/extended':
     get:
       description: Returns series extended record
