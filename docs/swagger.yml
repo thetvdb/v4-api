@@ -3185,6 +3185,10 @@ components:
             $ref: '#/components/schemas/Character'
           type: array
           x-go-name: Characters
+        contentRatings:
+          items:
+            $ref: '#/components/schemas/ContentRating'
+          type: array
         country:
           type: string
         defaultSeasonType:
