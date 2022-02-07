@@ -463,7 +463,7 @@ paths:
                 type: object
       tags:
         - Countries
-  '/entities/types':
+  '/entities':
     get:
       description: returns the active entity types
       operationId: getEntityTypes
