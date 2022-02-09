@@ -3304,6 +3304,11 @@ components:
             $ref: '#/components/schemas/SeasonBaseRecord'
           type: array
           x-go-name: Seasons
+        seasonTypes:
+          items:
+            $ref: '#/components/schemas/SeasonType'
+          type: array
+          x-go-name: Seasons
         slug:
           type: string
         status:
