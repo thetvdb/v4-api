@@ -1797,6 +1797,47 @@ paths:
 
       tags:
         - Updates
+  /user/favorites:
+    get:
+      description: returns user favorites
+      operationId: getUserFavorites
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/Favorites'
+                    type: array
+                  status:
+                    type: string
+                type: object
+        '401':
+          description: Unauthorized
+
+      tags:
+        - Favorites
+    post:
+      description: creates a new user favorite
+      operationId: createUserFavorites
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavoriteRecord'
+      responses:
+        '200':
+          description: Ok
+        '400':
+          description: Bad format
+        '401':
+          description: Unauthorized
+
+      tags:
+        - Favorites
 
 servers:
   - url: 'https://api4.thetvdb.com/v4'
@@ -2453,6 +2494,60 @@ components:
           type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
+    Favorites:
+      description: User favorites record
+      properties:
+        series:
+          items:
+            type: integer
+          type: array
+          x-go-name: series
+        movies:
+          items:
+            type: integer
+          type: array
+          x-go-name: movies
+        episodes:
+          items:
+            type: integer
+          type: array
+          x-go-name: episodes
+        artwork:
+          items:
+            type: integer
+          type: array
+          x-go-name: artwork
+        people:
+          items:
+            type: integer
+          type: array
+          x-go-name: people
+        lists:
+          items:
+            type: integer
+          type: array
+          x-go-name: list
+    FavoriteRecord:
+      description: Favorites record
+      properties:
+        series:
+          type: integer
+          x-go-name: series
+        movies:
+          type: integer
+          x-go-name: movies
+        episodes:
+          type: integer
+          x-go-name: episodes
+        artwork:
+          type: integer
+          x-go-name: artwork
+        people:
+          type: integer
+          x-go-name: people
+        list:
+          type: integer
+          x-go-name: list
     Gender:
       description: gender record
       properties:
