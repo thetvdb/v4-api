@@ -488,6 +488,36 @@ paths:
           description: Unauthorized
       tags:
         - Entity Types
+  /episodes:
+    get:
+      description: Returns a list of episodes base records with the basic attributes.
+      operationId: getAllEpisodes
+      parameters:
+        - description: page number
+          in: query
+          name: page
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/EpisodeBaseRecord'
+                    type: array
+                  status:
+                    type: string
+                  links:
+                    $ref: '#/components/schemas/Links'
+                type: object
+        '401':
+          description: Unauthorized
+      tags:
+        - Episodes
   '/episodes/{id}':
     get:
       description: Returns episode base record
@@ -1087,6 +1117,36 @@ paths:
           description: Unauthorized
       tags:
         - Movie Statuses
+  '/people':
+    get:
+      description: Returns a list of people base records with the basic attributes.
+      operationId: getAllPeople
+      parameters:
+        - description: page number
+          in: query
+          name: page
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/PeopleBaseRecord'
+                    type: array
+                  status:
+                    type: string
+                  links:
+                    $ref: '#/components/schemas/Links'
+                type: object
+        '401':
+          description: Unauthorized
+      tags:
+        - People
 
   '/people/{id}':
     get:
