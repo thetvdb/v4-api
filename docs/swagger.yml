@@ -488,9 +488,9 @@ paths:
           description: Unauthorized
       tags:
         - Entity Types
-  /episodes:
+  '/episodes':
     get:
-      description: Returns a list of episodes base records with the basic attributes.
+      description: Returns a list of episodes base records with the basic attributes.<br> Note that all episodes are returned, even those that may not be included in a series' default season order.
       operationId: getAllEpisodes
       parameters:
         - description: page number
