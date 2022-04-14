@@ -6,7 +6,7 @@ info:
     1. Use the /login endpoint and provide your API key as "apikey". If you have a user-supported key, also provide your subscriber PIN as "pin". Otherwise completely remove "pin" from your call.
     2. Executing this call will provide you with a bearer token, which is valid for 1 month.
     3. Provide your bearer token for subsequent API calls by clicking Authorize below or including in the header of all direct API calls: `Authorization: Bearer [your-token]`
-    
+
     ## Notes
     1. "score" is a field across almost all entities.  We generate scores for different types of entities in various ways, so no assumptions should be made about the meaning of this value.  It is simply used to hint at relative popularity for sorting purposes.
   title: TVDB API V4
@@ -1519,7 +1519,7 @@ paths:
         - Series
   '/series/{id}/artworks':
     get:
-      description: Returns series artworks base on language and type.
+      description: Returns series artworks base on language and type. <br> Note&#58; Artwork type is an id that can be found using **/artwork/types** endpoint.
       operationId: getSeriesArtworks
       parameters:
         - description: id
@@ -1541,7 +1541,7 @@ paths:
           required: false
           schema:
             type: integer
-            example: 1
+            example: 1,2,3
       responses:
         '200':
           description: response
@@ -1773,7 +1773,7 @@ paths:
           schema:
             type: string
             example: usa
-        - description: genre
+        - description: Genre id. This id can be found using **/genres** endpoint.
           in: query
           name: genre
           required: false
@@ -2063,6 +2063,7 @@ components:
           format: int64
           type: integer
           x-go-name: Type
+          description: The type ids are listed in /artwork/types.
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     ArtworkExtendedRecord:
@@ -2119,6 +2120,7 @@ components:
           format: int64
           type: integer
           x-go-name: Type
+          description: The type ids are listed in /artwork/types.
         updatedAt:
           format: int64
           type: integer
