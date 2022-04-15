@@ -10,7 +10,7 @@ info:
     ## Notes
     1. "score" is a field across almost all entities.  We generate scores for different types of entities in various ways, so no assumptions should be made about the meaning of this value.  It is simply used to hint at relative popularity for sorting purposes.
   title: TVDB API V4
-  version: 4.5.0
+  version: 4.6.1
 security:
   - bearerAuth: []
 paths:
