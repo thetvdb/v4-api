@@ -6,13 +6,13 @@ info:
     1. Use the /login endpoint and provide your API key as "apikey". If you have a user-supported key, also provide your subscriber PIN as "pin". Otherwise completely remove "pin" from your call.
     2. Executing this call will provide you with a bearer token, which is valid for 1 month.
     3. Provide your bearer token for subsequent API calls by clicking Authorize below or including in the header of all direct API calls: `Authorization: Bearer [your-token]`
-    
+
     ## Notes
     1. "score" is a field across almost all entities.  We generate scores for different types of entities in various ways, so no assumptions should be made about the meaning of this value.  It is simply used to hint at relative popularity for sorting purposes.
   title: TVDB API V4
   version: 4.6.2
 security:
-  - bearerAuth: []
+  - bearerAuth: [ ]
 paths:
   /login:
     post:
@@ -566,7 +566,7 @@ paths:
           required: false
           schema:
             type: string
-            enum: [translations]
+            enum: [ translations ]
             example: translations
       responses:
         '200':
@@ -956,7 +956,7 @@ paths:
           required: false
           schema:
             type: string
-            enum: [translations]
+            enum: [ translations ]
             example: translations
       responses:
         '200':
@@ -1048,7 +1048,9 @@ paths:
               schema:
                 properties:
                   data:
-                    $ref: '#/components/schemas/MovieBaseRecord'
+                    items:
+                      $ref: '#/components/schemas/MovieBaseRecord'
+                    type: array
                   status:
                     type: string
                 type: object
@@ -1196,7 +1198,7 @@ paths:
           required: false
           schema:
             type: string
-            enum: [translations]
+            enum: [ translations ]
             example: translations
       responses:
         '200':
@@ -1639,7 +1641,7 @@ paths:
           required: false
           schema:
             type: string
-            enum: [translations, episodes]
+            enum: [ translations, episodes ]
             example: translations
       responses:
         '200':
@@ -1840,28 +1842,28 @@ paths:
           schema:
             type: number
             example: 3
-            enum: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]
+            enum: [ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36 ]
         - description: original language
           in: query
           name: lang
           required: true
           schema:
             type: string
-            example : eng
+            example: eng
         - description: sort by results
           in: query
           name: sort
           required: false
           schema:
             type: string
-            enum: [score,firstAired,name]
+            enum: [ score,firstAired,name ]
         - description: status
           in: query
           name: status
           required: false
           schema:
             type: number
-            enum: [1,2,3]
+            enum: [ 1,2,3 ]
         - description: release year
           in: query
           name: year
@@ -1877,9 +1879,9 @@ paths:
               schema:
                 properties:
                   data:
-                    $ref: '#/components/schemas/SeriesBaseRecord'
-                  status:
-                    type: string
+                    items:
+                      $ref: '#/components/schemas/SeriesBaseRecord'
+                    type: array
                 type: object
         '400':
           description: Invalid format parameter.
@@ -2087,7 +2089,7 @@ servers:
   - url: 'https://api4.thetvdb.com/v4'
 components:
   securitySchemes:
-    bearerAuth:            # arbitrary name for the security scheme
+    bearerAuth: # arbitrary name for the security scheme
       type: http
       scheme: bearer
       bearerFormat: JWT
