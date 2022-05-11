@@ -1369,6 +1369,36 @@ paths:
           description: Unauthorized
       tags:
         - Search
+  /search/remoteid/{remoteId}:
+    get:
+      description: Search a series, movie, people, episode, company or season by specific reomote ide.
+      operationId: getSearchResultsByRemoteId
+      parameters:
+        - description: Search for a specific remote id.  Allows searching for an IMDB or EIDR id, for example.
+          in: path
+          required: true
+          name: remoteId
+          schema:
+            type: string
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/SearchResult'
+                    type: array
+                  status:
+                    type: string
+                type: object
+        '401':
+          description: Unauthorized
+      tags:
+        - Search
+
   /seasons:
     get:
       description: returns list of seasons base records
