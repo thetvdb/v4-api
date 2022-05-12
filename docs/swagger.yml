@@ -2088,6 +2088,35 @@ paths:
 
       tags:
         - User info
+  /user/{id}:
+    get:
+      description: returns user info by user id
+      operationId: getUserInfoById
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/UserInfo'
+                  status:
+                    type: string
+                type: object
+        '401':
+          description: Unauthorized
+
+      tags:
+        - User info
   /user/favorites:
     get:
       description: returns user favorites
