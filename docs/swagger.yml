@@ -958,6 +958,13 @@ paths:
             type: string
             enum: [ translations ]
             example: translations
+        - description: reduce the payload and returns the short version of this record without characters, artworks and trailers.
+          in: query
+          name: short
+          required: false
+          schema:
+            type: boolean
+            enum: [ true, false ]
       responses:
         '200':
           description: response
@@ -1673,6 +1680,13 @@ paths:
             type: string
             enum: [ translations, episodes ]
             example: translations
+        - description: reduce the payload and returns the short version of this record without characters and artworks
+          in: query
+          name: short
+          required: false
+          schema:
+            type: boolean
+            enum: [ true, false ]
       responses:
         '200':
           description: response
