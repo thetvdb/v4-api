@@ -3634,8 +3634,6 @@ components:
           $ref: '#/components/schemas/SeriesAirsDays'
         airsTime:
           type: string
-        airsTimeUTC:
-          type: string
         aliases:
           items:
             $ref: '#/components/schemas/Alias'
