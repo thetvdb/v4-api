@@ -2761,7 +2761,7 @@ components:
             type: string
           type: array
           x-go-name: NameTranslations
-        network:
+        networks:
           items:
             $ref: '#/components/schemas/Company'
           type: array
