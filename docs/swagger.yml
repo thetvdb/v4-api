@@ -2813,6 +2813,8 @@ components:
             $ref: '#/components/schemas/Trailer'
           type: array
           x-go-name: Trailers
+        translations:
+          $ref: '#/components/schemas/TranslationExtended'
         lastUpdated:
           type: string
         finaleType:
@@ -3178,6 +3180,8 @@ components:
             $ref: '#/components/schemas/Trailer'
           type: array
           x-go-name: Trailers
+        translations:
+          $ref: '#/components/schemas/TranslationExtended'
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     PeopleBaseRecord:
@@ -3282,6 +3286,8 @@ components:
             $ref: '#/components/schemas/TagOption'
           type: array
           x-go-name: TagOptions
+        translations:
+          $ref: '#/components/schemas/TranslationExtended'
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     PeopleType:
@@ -3560,8 +3566,6 @@ components:
     SeriesBaseRecord:
       description: The base record for a series. All series airs time like firstAired, lastAired, nextAired, etc. are in US EST for US series, and for all non-US series, the time of the show’s country capital or most populous city. For streaming services, is the official release time. See https://support.thetvdb.com/kb/faq.php?id=29.
       properties:
-        abbreviation:
-          type: string
         aliases:
           items:
             $ref: '#/components/schemas/Alias'
@@ -3614,8 +3618,6 @@ components:
           format: double
           type: number
           x-go-name: Score
-        slug:
-          type: string
         status:
           $ref: '#/components/schemas/Status'
         lastUpdated:
@@ -3661,6 +3663,11 @@ components:
           format: int64
           type: integer
           x-go-name: DefaultSeasonType
+        episodes:
+          items:
+            $ref: '#/components/schemas/EpisodeBaseRecord'
+          type: array
+          x-go-name: Episodes
         firstAired:
           type: string
         lists:
@@ -3745,9 +3752,7 @@ components:
           type: array
           x-go-name: Trailers
         translations:
-          items:
-            $ref: '#/components/schemas/TranslationExtended'
-          type: array
+          $ref: '#/components/schemas/TranslationExtended'
 
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
