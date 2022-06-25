@@ -23,6 +23,7 @@ The benefit of maintaining a full copy of TheTVDB's data is that you can transfo
 
 1. Iterate all records in each of the endpoints, and ingest as desired into your database.
 2. Monitor the [/updates endpoint](https://thetvdb.github.io/v4-api/#/Updates/updates) and update your database with any changes to the records.
+3. Some deletion updates include mergeToType and mergeToId information, if the deletion was the result of a duplicate record.  You can move any information, like follower counts or ratings, from the deleted record to the record specified by the two merge fields.
 
 #### Providing a Caching Proxy
 A caching proxy can provide an intermediary between your users and TheTVDB.  This protects your service from any potential outages or performance issues on TheTVDB, and reduces bandwidth for TheTVDB as well.  Additionally, you can transform the data as desired before delivering to your end users.  Finally, this approach allows you to make requests from TheTVDB's API using your API key, and using your own authentication model for your own users.  This approach limits you to the endpoints provided by TheTVDB.
