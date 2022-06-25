@@ -1910,7 +1910,7 @@ paths:
         - Source Types
   /updates:
     get:
-      description: returns updated entities
+      description: Returns updated entities.  methodInt indicates a created record (1), an updated record (2), or a deleted record (3).  If a record is deleted because it was a duplicate of another record, the target record's information is provided in mergeToType and mergeToId.
       operationId: updates
       parameters:
         - in: query
