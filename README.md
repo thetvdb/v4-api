@@ -11,6 +11,10 @@ Before requesting assistance, please review our [API documentation](https://thet
 
 For API related issues or questions, please use the github [issue tracker](https://github.com/thetvdb/v4-api/issues).
 
+##Postman collections
+
+[Postman](https://www.getpostman.com/collections/7a9397ce69ff246f74d0)
+
 ## Official Libraries
 - [Python](https://github.com/thetvdb/tvdb-v4-python)
 
