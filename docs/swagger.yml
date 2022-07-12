@@ -1931,7 +1931,14 @@ paths:
           required: false
           schema:
             type: string
-            enum: [ score,firstAired,name ]
+            enum: [ score,firstAired,lastAired,name ]
+        - description: sort type ascending or descending
+          in: query
+          name: sortType
+          required: false
+          schema:
+            type: string
+            enum: [ asc,desc ]
         - description: status
           in: query
           name: status
