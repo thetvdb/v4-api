@@ -1661,6 +1661,37 @@ paths:
           description: Series not found
       tags:
         - Series
+  '/series/{id}/nextAired':
+    get:
+      description: Returns series base record including the nextAired field. <br> Note&#58; nextAired was included in the base record endpoint but that field will deprecated in the future so developers should use the nextAired endpoint.
+      operationId: getSeriesNextAired
+      parameters:
+        - description: id
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SeriesBaseRecord'
+                  status:
+                    type: string
+                type: object
+        '400':
+          description: Invalid series id
+        '401':
+          description: Unauthorized
+        '404':
+          description: Series not found
+      tags:
+        - Series
   '/series/{id}/extended':
     get:
       description: Returns series extended record
