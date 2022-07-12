@@ -3236,6 +3236,8 @@ components:
           x-go-name: ID
         image:
           type: string
+        lastUpdated:
+          type: string
         name:
           type: string
         nameTranslations:
@@ -3469,6 +3471,8 @@ components:
           type: string
         imageType:
           type: integer
+        lastUpdated:
+          type: string
         name:
           type: string
         nameTranslations:
@@ -3518,6 +3522,8 @@ components:
           type: string
         imageType:
           type: integer
+        lastUpdated:
+          type: string
         name:
           type: string
         nameTranslations:
