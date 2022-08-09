@@ -2487,6 +2487,8 @@ components:
           x-go-name: IsFeatured
         movieId:
           type: integer
+        movie:
+          $ref: '#/components/schemas/RecordInfo'
         name:
           type: string
         nameTranslations:
@@ -2507,6 +2509,8 @@ components:
           type: string
         seriesId:
           type: integer
+        series:
+          $ref: '#/components/schemas/RecordInfo'
         sort:
           format: int64
           type: integer
@@ -3346,6 +3350,19 @@ components:
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Race:
       description: race record
+      type: object
+      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
+    RecordInfo:
+      description: base record info
+      properties:
+        image:
+          type: string
+          x-go-name: Image
+        name:
+          type: string
+          x-go-name: Name
+        year:
+          type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     Release:
