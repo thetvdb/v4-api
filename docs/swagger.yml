@@ -3110,6 +3110,8 @@ components:
           x-go-name: Awards
         boxOffice:
           type: string
+        boxOfficeUS:
+          type: string
         budget:
           type: string
         characters:
