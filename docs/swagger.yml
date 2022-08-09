@@ -2220,6 +2220,10 @@ components:
     ArtworkBaseRecord:
       description: base artwork record
       properties:
+        height:
+          format: int64
+          type: integer
+          x-go-name: Height
         id:
           type: integer
         image:
@@ -2237,6 +2241,10 @@ components:
           type: integer
           x-go-name: Type
           description: The artwork type corresponds to the ids from the /artwork/types endpoint.
+        width:
+          format: int64
+          type: integer
+          x-go-name: Width
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     ArtworkExtendedRecord:
