@@ -2990,10 +2990,20 @@ components:
             type: string
           type: array
           x-go-name: OverviewTranslations
-        url:
-          type: string
+        remoteIds:
+          items:
+            $ref: '#/components/schemas/RemoteID'
+          type: array
+          x-go-name: RemoteIDs
+        tags:
+          items:
+            $ref: '#/components/schemas/TagOption'
+          type: array
+          x-go-name: TagOptions
         score:
           type: integer
+        url:
+          type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     ListExtendedRecord:
