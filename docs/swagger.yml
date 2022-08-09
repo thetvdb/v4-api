@@ -2770,6 +2770,9 @@ components:
           type: integer
         airsBeforeSeason:
           type: integer
+        finaleType:
+          description: season, midseason, or series
+          type: string
         id:
           format: int64
           type: integer
@@ -2782,6 +2785,8 @@ components:
           format: int64
           type: integer
           x-go-name: IsMovie
+        lastUpdated:
+          type: string
         name:
           type: string
         nameTranslations:
@@ -2813,10 +2818,7 @@ components:
           x-go-name: SeriesID
         seasonName:
           type: string
-        lastUpdated:
-          type: string
-        finaleType:
-          description: season, midseason, or series
+        year:
           type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
@@ -2850,6 +2852,9 @@ components:
             $ref: '#/components/schemas/ContentRating'
           type: array
           x-go-name: ContentRatings
+        finaleType:
+          description: season, midseason, or series
+          type: string
         id:
           format: int64
           type: integer
@@ -2862,6 +2867,8 @@ components:
           format: int64
           type: integer
           x-go-name: IsMovie
+        lastUpdated:
+          type: string
         name:
           type: string
         nameTranslations:
@@ -2923,10 +2930,7 @@ components:
           x-go-name: Trailers
         translations:
           $ref: '#/components/schemas/TranslationExtended'
-        lastUpdated:
-          type: string
-        finaleType:
-          description: season, midseason, or series
+        year:
           type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
@@ -3137,6 +3141,8 @@ components:
         image:
           type: string
           x-go-name: Image
+        lastUpdated:
+          type: string
         name:
           type: string
           x-go-name: Name
@@ -3161,7 +3167,7 @@ components:
           $ref: '#/components/schemas/Status'
         runtime:
           type: integer
-        lastUpdated:
+        year:
           type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
@@ -3302,6 +3308,8 @@ components:
           x-go-name: Trailers
         translations:
           $ref: '#/components/schemas/TranslationExtended'
+        year:
+          type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     PeopleBaseRecord:
@@ -3582,6 +3590,8 @@ components:
           x-go-name: SeriesID
         type:
           $ref: '#/components/schemas/SeasonType'
+        year:
+          type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeasonExtendedRecord:
@@ -3644,6 +3654,8 @@ components:
           items:
             $ref: '#/components/schemas/Translation'
           type: array
+        year:
+          type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeasonType:
@@ -3723,6 +3735,8 @@ components:
           x-go-name: IsOrderRandomized
         lastAired:
           type: string
+        lastUpdated:
+          type: string
         name:
           type: string
         nameTranslations:
@@ -3750,9 +3764,8 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/Status'
-        lastUpdated:
+        year:
           type: string
-
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeriesExtendedRecord:
@@ -3881,7 +3894,8 @@ components:
           x-go-name: Trailers
         translations:
           $ref: '#/components/schemas/TranslationExtended'
-
+        year:
+          type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SourceType:
