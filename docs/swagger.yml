@@ -2544,6 +2544,8 @@ components:
             $ref: '#/components/schemas/Alias'
           type: array
           x-go-name: Aliases
+        episode:
+          $ref: '#/components/schemas/RecordInfo'
         episodeId:
           type: integer
         id:
