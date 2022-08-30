@@ -1318,7 +1318,7 @@ paths:
 
   /search:
     get:
-      description: Our search index includes series, movies, people, and companies.
+      description: Our search index includes series, movies, people, and companies. Search is limited to 5k results max.
       operationId: getSearchResults
       parameters:
         - description: The primary search string, which can include the main title for a record including all translations and aliases.
@@ -1402,6 +1402,8 @@ paths:
                     type: array
                   status:
                     type: string
+                  links:
+                    $ref: '#/components/schemas/Links'
                 type: object
         '401':
           description: Unauthorized
