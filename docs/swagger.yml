@@ -1407,6 +1407,8 @@ paths:
                 type: object
         '401':
           description: Unauthorized
+        '400':
+          description: Max results overflow
       tags:
         - Search
   /search/remoteid/{remoteId}:
