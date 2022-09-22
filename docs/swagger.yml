@@ -10,7 +10,7 @@ info:
     ## Notes
     1. "score" is a field across almost all entities.  We generate scores for different types of entities in various ways, so no assumptions should be made about the meaning of this value.  It is simply used to hint at relative popularity for sorting purposes.
   title: TVDB API V4
-  version: 4.6.4
+  version: 4.7.0
 security:
   - bearerAuth: [ ]
 paths:
@@ -804,7 +804,38 @@ paths:
         '401':
           description: Unauthorized
         '404':
-          description: Lists not found
+          description: List not found
+      tags:
+        - Lists
+  '/lists/slug/{slug}':
+    get:
+      description: returns an list base record search by slug
+      operationId: getListBySlug
+      parameters:
+        - description: slug
+          in: path
+          name: slug
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ListBaseRecord'
+                  status:
+                    type: string
+                type: object
+        '400':
+          description: Invalid list slug
+        '401':
+          description: Unauthorized
+        '404':
+          description: List not found
       tags:
         - Lists
   '/lists/{id}/extended':
