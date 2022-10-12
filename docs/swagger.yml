@@ -1444,10 +1444,10 @@ paths:
         - Search
   /search/remoteid/{remoteId}:
     get:
-      description: Search a series, movie, people, episode, company or season by specific reomote id.
+      description: Search a series, movie, people, episode, company or season by specific remote id and returns a base record for that entity.
       operationId: getSearchResultsByRemoteId
       parameters:
-        - description: Search for a specific remote id and returns a base record for that entity.  Allows searching for an IMDB or EIDR id, for example.
+        - description: Search for a specific remote id.  Allows searching for an IMDB or EIDR id, for example.
           in: path
           required: true
           name: remoteId
