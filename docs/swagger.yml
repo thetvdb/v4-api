@@ -1444,7 +1444,7 @@ paths:
         - Search
   /search/remoteid/{remoteId}:
     get:
-      description: Search a series, movie, people, episode, company or season by specific reomote ide.
+      description: Search a series, movie, people, episode, company or season by specific remote id and returns a base record for that entity.
       operationId: getSearchResultsByRemoteId
       parameters:
         - description: Search for a specific remote id.  Allows searching for an IMDB or EIDR id, for example.
@@ -1462,7 +1462,7 @@ paths:
                 properties:
                   data:
                     items:
-                      $ref: '#/components/schemas/SearchResult'
+                      $ref: '#/components/schemas/SearchByRemoteIdResult'
                     type: array
                   status:
                     type: string
@@ -3612,6 +3612,25 @@ components:
         year:
           type: string
       type: object
+    SearchByRemoteIdResult:
+      description: search by remote reuslt is a base record for a movie, series, people, season or company search result
+      properties:
+        series:
+          type: object
+          $ref: '#/components/schemas/SeriesBaseRecord'
+        people:
+          type: object
+          $ref: '#/components/schemas/PeopleBaseRecord'
+        movie:
+          type: object
+          $ref: '#/components/schemas/MovieBaseRecord'
+        episode:
+          type: object
+          $ref: '#/components/schemas/EpisodeBaseRecord'
+        company:
+          type: object
+          $ref: '#/components/schemas/Company'
+
     SeasonBaseRecord:
       description: season genre record
       properties:
