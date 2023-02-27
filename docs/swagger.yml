@@ -16,7 +16,7 @@ security:
 paths:
   /login:
     post:
-      summary: create an auth token. The token has one month valition length.
+      summary: create an auth token. The token has one month validation length.
       requestBody:
         content:
           application/json:
