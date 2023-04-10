@@ -3022,10 +3022,10 @@ components:
         series:
           type: integer
           x-go-name: series
-        movies:
+        movie:
           type: integer
           x-go-name: movies
-        episodes:
+        episode:
           type: integer
           x-go-name: episodes
         artwork:
