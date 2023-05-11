@@ -2781,9 +2781,17 @@ components:
         entityType:
           type: string
           x-go-name: EnitityType
+        methodInt:
+          type: integer
         method:
           type: string
           x-go-name: Method
+        extraInfo:
+          type: string
+        userId:
+          type: integer
+        recordType:
+          type: string
         recordId:
           format: int64
           type: integer
