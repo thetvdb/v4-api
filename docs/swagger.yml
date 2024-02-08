@@ -10,7 +10,7 @@ info:
     ## Notes
     1. "score" is a field across almost all entities.  We generate scores for different types of entities in various ways, so no assumptions should be made about the meaning of this value.  It is simply used to hint at relative popularity for sorting purposes.
   title: TVDB API V4
-  version: 4.7.8
+  version: 4.7.9
 security:
   - bearerAuth: [ ]
 paths:
@@ -2587,6 +2587,7 @@ components:
           $ref: '#/components/schemas/RecordInfo'
         episodeId:
           type: integer
+          nullable: true
         id:
           format: int64
           type: integer
@@ -2598,6 +2599,7 @@ components:
           x-go-name: IsFeatured
         movieId:
           type: integer
+          nullable: true
         movie:
           $ref: '#/components/schemas/RecordInfo'
         name:
@@ -2620,6 +2622,7 @@ components:
           type: string
         seriesId:
           type: integer
+          nullable: true
         series:
           $ref: '#/components/schemas/RecordInfo'
         sort:
@@ -2695,6 +2698,7 @@ components:
       properties:
         id:
           type: integer
+          nullable: true
         name:
           type: string
         relation:
@@ -2705,6 +2709,7 @@ components:
       properties:
         id:
           type: integer
+          nullable: true
         typeName:
           type: string
     CompanyType:
@@ -2834,6 +2839,7 @@ components:
           type: string
         imageType:
           type: integer
+          nullable: true
         isMovie:
           format: int64
           type: integer
@@ -2860,6 +2866,7 @@ components:
           x-go-name: OverviewTranslations
         runtime:
           type: integer
+          nullable: true
         seasonNumber:
           type: integer
         seasons:
@@ -2918,6 +2925,7 @@ components:
           type: string
         imageType:
           type: integer
+          nullable: true
         isMovie:
           format: int64
           type: integer
@@ -2960,6 +2968,7 @@ components:
           x-go-name: RemoteIDs
         runtime:
           type: integer
+          nullable: true
         seasonNumber:
           type: integer
         seasons:
@@ -3576,9 +3585,7 @@ components:
         overview:
           type: string
         overviews:
-          items:
             $ref: '#/components/schemas/TranslationSimple'
-          type: array
         overview_translated:
           items:
             type: string
@@ -3610,9 +3617,7 @@ components:
         thumbnail:
           type: string
         translations:
-          items:
             $ref: '#/components/schemas/TranslationSimple'
-          type: array
         translationsWithLang:
           items:
             type: string
@@ -3802,6 +3807,7 @@ components:
           x-go-name: Aliases
         averageRuntime:
           type: integer
+          nullable: true
         country:
           type: string
         defaultSeasonType:
@@ -3878,6 +3884,7 @@ components:
           x-go-name: Artworks
         averageRuntime:
           type: integer
+          nullable: true
         characters:
           items:
             $ref: '#/components/schemas/Character'
@@ -4017,6 +4024,7 @@ components:
           format: int64
           type: integer
           x-go-name: ID
+          nullable: true
         keepUpdated:
           type: boolean
           x-go-name: KeepUpdated
@@ -4127,10 +4135,12 @@ components:
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     TranslationSimple:
       description: translation simple record
-      properties:
-        language:
-          type: string
-          x-go-name: Language
+      additionalProperties:
+        type: string
+      example: # Ejemplo específico del objeto
+        ara: "تدور قصة المسلسل حول..."
+        ces: "Během letu č. 815 společnosti Oceanic..."
+        deu: "Im Bruchteil einer Sekunde gerät das Leben..."
       type: object
     TranslationExtended:
       description: translation extended record
@@ -4214,19 +4224,24 @@ components:
       properties:
         studio:
           type: array
-          $ref: '#/components/schemas/Company'
+          items:
+            $ref: '#/components/schemas/Company'
         network:
           type: array
-          $ref: '#/components/schemas/Company'
+          items:
+            $ref: '#/components/schemas/Company'
         production:
           type: array
-          $ref: '#/components/schemas/Company'
+          items:
+            $ref: '#/components/schemas/Company'
         distributor:
           type: array
-          $ref: '#/components/schemas/Company'
+          items:
+            $ref: '#/components/schemas/Company'
         special_effects:
           type: array
-          $ref: '#/components/schemas/Company'
+          items:
+            $ref: '#/components/schemas/Company'
     Links:
       description: Links for next, previous and current record
       properties:
