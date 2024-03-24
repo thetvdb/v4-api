@@ -2679,6 +2679,7 @@ components:
           format: int64
           type: integer
           x-go-name: PrimaryCompanyType
+          nullable: true
         slug:
           type: string
           x-go-name: Slug
@@ -3233,6 +3234,7 @@ components:
           $ref: '#/components/schemas/Status'
         runtime:
           type: integer
+          nullable: true
         year:
           type: string
       type: object
@@ -3338,6 +3340,7 @@ components:
           x-go-name: RemoteIDs
         runtime:
           type: integer
+          nullable: true
         score:
           format: double
           type: number
