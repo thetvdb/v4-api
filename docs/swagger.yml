@@ -4250,10 +4250,12 @@ components:
       properties:
         prev:
           type: string
+          nullable: true
         self:
           type: string
         next:
           type: string
+          nullable: true
         total_items:
           type: integer
         page_size:
