@@ -2821,6 +2821,8 @@ components:
     EpisodeBaseRecord:
       description: base episode record
       properties:
+        absoluteNumber:
+          type: integer
         aired:
           type: string
         airsAfterSeason:
