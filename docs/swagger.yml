@@ -4252,8 +4252,10 @@ components:
       properties:
         prev:
           type: string
+          nullable: true
         self:
           type: string
+          nullable: true
         next:
           type: string
         total_items:
