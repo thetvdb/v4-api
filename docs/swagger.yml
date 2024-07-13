@@ -1542,6 +1542,14 @@ paths:
           required: true
           schema:
             type: number
+        - description: meta
+          in: query
+          name: meta
+          required: false
+          schema:
+            type: string
+            enum: [ translations ]
+            example: translations
       responses:
         '200':
           description: response
@@ -3751,8 +3759,7 @@ components:
           x-go-name: TagOptions
         translations:
           items:
-            $ref: '#/components/schemas/Translation'
-          type: array
+            $ref: '#/components/schemas/TranslationExtended'
         year:
           type: string
       type: object
