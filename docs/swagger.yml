@@ -10,7 +10,7 @@ info:
     ## Notes
     1. "score" is a field across almost all entities.  We generate scores for different types of entities in various ways, so no assumptions should be made about the meaning of this value.  It is simply used to hint at relative popularity for sorting purposes.
   title: TVDB API V4
-  version: 4.7.10
+  version: 4.8.0
 security:
   - bearerAuth: [ ]
 paths:
@@ -1387,9 +1387,15 @@ paths:
           name: director
           schema:
             type: string
-        - description: Restrict results to a specific primary language.  Should include the 3 character language code.  Currently only used for series and movies.
+        - description: Not applied to search results; kept for backwards compatibility. Use primaryLanguage to filter by primary language.
           in: query
           name: language
+          deprecated: true
+          schema:
+            type: string
+        - description: Restrict results to a specific primary language.  Should include the 3 character language code, such as "eng" (case-insensitive).  Only series and movies have a primary language, so other types are excluded.  Returns no results if nothing matches.
+          in: query
+          name: primaryLanguage
           schema:
             type: string
         - description: Restrict results to a specific type of company.  Should include the full name of the type of company, such as "Production Company".  Only used for companies.
