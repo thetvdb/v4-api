@@ -4,19 +4,20 @@ info:
     Documentation of [TheTVDB](https://thetvdb.com/) API V4. All related information is linked from our [Github repo](https://github.com/thetvdb/v4-api). You might also want to use our [Postman collection] (https://www.getpostman.com/collections/7a9397ce69ff246f74d0)
     ## Authentication
     1. Use the /login endpoint and provide your API key as "apikey". If you have a user-supported key, also provide your subscriber PIN as "pin". Otherwise completely remove "pin" from your call.
-    2. Executing this call will provide you with a bearer token, which is valid for 1 month.
+    2. Executing this call will provide you with a bearer token, which is valid for 730 hours (about 30 days) from the time it is issued. The exact expiry is in the token's standard JWT `exp` claim (Unix time in seconds).
     3. Provide your bearer token for subsequent API calls by clicking Authorize below or including in the header of all direct API calls: `Authorization: Bearer [your-token]`
+    4. There is no refresh endpoint (`/refresh_token` does not exist). To renew a token, call /login again with the same credentials before it expires. Each call returns a new token.
 
     ## Notes
     1. "score" is a field across almost all entities.  We generate scores for different types of entities in various ways, so no assumptions should be made about the meaning of this value.  It is simply used to hint at relative popularity for sorting purposes.
   title: TVDB API V4
-  version: 4.8.0
+  version: 4.8.1
 security:
   - bearerAuth: [ ]
 paths:
   /login:
     post:
-      summary: create an auth token. The token has one month validation length.
+      summary: create an auth token. The token is valid for 730 hours from issue time (see the `exp` claim). Call again to get a new token.
       requestBody:
         content:
           application/json:
