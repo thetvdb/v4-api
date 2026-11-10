@@ -1821,7 +1821,13 @@ paths:
           required: true
           schema:
             type: number
-        - description: season-type
+        - description: >-
+            Episode order to list. One of `default` (the series' default order),
+            `official` (Aired Order), `dvd` (DVD Order), `absolute` (Absolute Order),
+            `alternate` (Alternate Order), `regional` (Regional Order),
+            `altdvd` (Alternate DVD Order) or `alttwo` (Alternate Order 2).
+            These are the `type` values from `/seasons/types`. An unknown value
+            currently returns an empty `episodes` list, not an error.
           in: path
           name: season-type
           required: true
@@ -1840,6 +1846,10 @@ paths:
               value: alternate
             regional:
               value: regional
+            altdvd:
+              value: altdvd
+            alttwo:
+              value: alttwo
         - in: query
           name: season
           required: false
@@ -1902,7 +1912,13 @@ paths:
           required: true
           schema:
             type: number
-        - description: season-type
+        - description: >-
+            Episode order to list. One of `default` (the series' default order),
+            `official` (Aired Order), `dvd` (DVD Order), `absolute` (Absolute Order),
+            `alternate` (Alternate Order), `regional` (Regional Order),
+            `altdvd` (Alternate DVD Order) or `alttwo` (Alternate Order 2).
+            These are the `type` values from `/seasons/types`. An unknown value
+            currently returns an empty `episodes` list, not an error.
           in: path
           name: season-type
           required: true
@@ -1921,6 +1937,10 @@ paths:
               value: alternate
             regional:
               value: regional
+            altdvd:
+              value: altdvd
+            alttwo:
+              value: alttwo
         - in: path
           name: lang
           required: true
