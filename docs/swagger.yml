@@ -1840,6 +1840,10 @@ paths:
               value: alternate
             regional:
               value: regional
+            altdvd:
+              value: altdvd
+            alttwo:
+              value: alttwo
         - in: query
           name: season
           required: false
@@ -1921,6 +1925,10 @@ paths:
               value: alternate
             regional:
               value: regional
+            altdvd:
+              value: altdvd
+            alttwo:
+              value: alttwo
         - in: path
           name: lang
           required: true
