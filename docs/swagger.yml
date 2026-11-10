@@ -1393,7 +1393,7 @@ paths:
           deprecated: true
           schema:
             type: string
-        - description: Restrict results to a specific primary language.  Should include the 3 character language code, such as "eng".  Only series and movies have a primary language, so other types are excluded.  Returns no results if nothing matches.
+        - description: Restrict results to a specific primary language.  Should include the 3 character language code, such as "eng" (case-insensitive).  Only series and movies have a primary language, so other types are excluded.  Returns no results if nothing matches.
           in: query
           name: primaryLanguage
           schema:
