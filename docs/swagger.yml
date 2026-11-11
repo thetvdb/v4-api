@@ -2183,6 +2183,7 @@ paths:
         - in: query
           name: since
           required: true
+          description: Unix timestamp in seconds (for example 1730000000). Returns changes made after this time. It must be within the last 90 days and not in the future, otherwise the API returns 400. If your local copy is older than 90 days, re-fetch the records you track instead of using /updates.
           schema:
             type: number
         - in: query
@@ -2221,7 +2222,7 @@ paths:
                     $ref: '#/components/schemas/Links'
                 type: object
         '400':
-          description: Invalid since, type param.
+          description: Invalid since (older than 90 days or in the future) or type param.
         '401':
           description: Unauthorized
 
