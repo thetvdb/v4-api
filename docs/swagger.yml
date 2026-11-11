@@ -2681,6 +2681,8 @@ components:
             $ref: '#/components/schemas/Alias'
           type: array
           x-go-name: Aliases
+        companyType:
+          $ref: '#/components/schemas/CompanyType'
         country:
           type: string
         id:
@@ -2710,6 +2712,7 @@ components:
           type: string
           x-go-name: Slug
         parentCompany:
+          description: Not returned for every company; may be missing or have empty values.
           type: object
           $ref: '#/components/schemas/ParentCompany'
         tagOptions:
@@ -3494,11 +3497,6 @@ components:
             type: string
           type: array
           x-go-name: OverviewTranslations
-        races:
-          items:
-            $ref: '#/components/schemas/Race'
-          type: array
-          x-go-name: Races
         remoteIds:
           items:
             $ref: '#/components/schemas/RemoteID'
@@ -3511,6 +3509,7 @@ components:
         slug:
           type: string
         tagOptions:
+          description: Includes race, which is no longer returned as a separate field.
           items:
             $ref: '#/components/schemas/TagOption'
           type: array
@@ -3529,10 +3528,6 @@ components:
         name:
           type: string
           x-go-name: Name
-      type: object
-      x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
-    Race:
-      description: race record
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     RecordInfo:
@@ -3585,7 +3580,7 @@ components:
           items:
             type: string
           type: array
-        companyType:
+        company_type:
           type: string
         country:
           type: string
@@ -3611,7 +3606,7 @@ components:
           type: string
         objectID:
           type: string
-        officialList:
+        official_list:
           type: string
         overview:
           type: string
@@ -3649,7 +3644,7 @@ components:
           type: string
         translations:
             $ref: '#/components/schemas/TranslationSimple'
-        translationsWithLang:
+        translations_with_lang:
           items:
             type: string
           type: array
@@ -3688,6 +3683,7 @@ components:
           type: string
         imageType:
           type: integer
+          description: Omitted when 0.
         lastUpdated:
           type: string
         name:
@@ -3741,6 +3737,7 @@ components:
           type: string
         imageType:
           type: integer
+          description: Omitted when 0.
         lastUpdated:
           type: string
         name:
@@ -3876,6 +3873,8 @@ components:
         originalCountry:
           type: string
         originalLanguage:
+          type: string
+        overview:
           type: string
         overviewTranslations:
           items:
