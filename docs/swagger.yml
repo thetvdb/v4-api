@@ -2197,8 +2197,8 @@ paths:
           required: false
           schema:
             type: string
-            enum: [ delete, update ]
-            example: movies
+            enum: [ create, update, delete ]
+            example: update
         - description: name
           in: query
           name: page
