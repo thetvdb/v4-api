@@ -1372,7 +1372,7 @@ paths:
           name: year
           schema:
             type: number
-        - description: Restrict results to a specific company (original network, production company, studio, etc).  As an example, "The Walking Dead" would have companies of "AMC", "AMC+", and "Disney+".
+        - description: Restrict results to a specific company (original network, production company, studio, etc).  As an example, "The Walking Dead" would have companies of "AMC", "AMC+", and "Disney+".  Case-sensitive, so it must match the company name exactly.
           in: query
           name: company
           schema:
@@ -1382,7 +1382,7 @@ paths:
           name: country
           schema:
             type: string
-        - description: Restrict results to a specific director.  Generally only used for movies.  Should include the full name of the director, such as "Steven Spielberg".
+        - description: Restrict results to a specific director.  Generally only used for movies.  Should include the full name of the director, such as "Steven Spielberg".  Case-sensitive, so it must match the director name exactly.
           in: query
           name: director
           schema:
@@ -1398,12 +1398,12 @@ paths:
           name: primaryLanguage
           schema:
             type: string
-        - description: Restrict results to a specific type of company.  Should include the full name of the type of company, such as "Production Company".  Only used for companies.
+        - description: Restrict results to a specific type of company.  Should include the full name of the type of company (Network, Studio, Production Company, Distributor, or Special Effects), case-insensitive.  Only used for companies.
           in: query
           name: primaryType
           schema:
             type: string
-        - description: Restrict results to a specific network.  Used for TV and TV movies, and functions the same as the company parameter with more specificity.
+        - description: Restrict results to a specific network.  Used for TV and TV movies, and functions the same as the company parameter with more specificity.  Case-sensitive, so it must match the network name exactly.
           in: query
           name: network
           schema:
