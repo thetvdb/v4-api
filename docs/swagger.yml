@@ -2190,20 +2190,20 @@ paths:
           required: false
           schema:
             type: string
-            enum: [ artwork,award_nominees,companies,episodes,lists,people,seasons,series,seriespeople,artworktypes,award_categories,awards,company_types,content_ratings,countries,entity_types,genres,languages,movies,movie_genres,movie_status,peopletypes,seasontypes,sourcetypes,tag_options,tags,translatedcharacters,translatedcompanies,translatedepisodes,translatedlists,translatedmovies,translatedpeople,translatedseasons,translatedserierk ]
+            enum: [ artwork,award_nominees,companies,episodes,lists,people,seasons,series,seriespeople,artworktypes,award_categories,awards,company_types,content_ratings,countries,entity_types,genres,languages,movies,movie_genres,movie_status,peopletypes,seasontypes,sourcetypes,tag_options,tags,translatedcharacters,translatedcompanies,translatedepisodes,translatedlists,translatedmovies,translatedpeople,translatedseasons,translatedseries ]
             example: movies
         - in: query
           name: action
           required: false
           schema:
             type: string
-            enum: [ delete, update ]
-            example: movies
-        - description: name
+            enum: [ create, update, delete ]
+            example: update
+        - description: Page number, starting at 0
           in: query
           name: page
           schema:
-            type: number
+            type: integer
       responses:
         '200':
           description: response
@@ -2840,7 +2840,7 @@ components:
         mergeToId:
           format: int64
           type: integer
-        mergeToEntityType:
+        mergeToType:
           type: string
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
