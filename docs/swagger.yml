@@ -2712,7 +2712,6 @@ components:
           type: string
           x-go-name: Slug
         parentCompany:
-          description: Not returned for every company; may be missing or have empty values.
           type: object
           $ref: '#/components/schemas/ParentCompany'
         tagOptions:
@@ -2723,7 +2722,7 @@ components:
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     ParentCompany:
-      description: A parent company record
+      description: A parent company record. Always returned; when the company has no parent, every field is null.
       type: object
       properties:
         id:
@@ -2731,6 +2730,7 @@ components:
           nullable: true
         name:
           type: string
+          nullable: true
         relation:
           type: object
           $ref: '#/components/schemas/CompanyRelationShip'
@@ -2742,8 +2742,9 @@ components:
           nullable: true
         typeName:
           type: string
+          nullable: true
     CompanyType:
-      description: A company type record
+      description: A company type record. A company with no type returns companyTypeId 0 and an empty companyTypeName.
       type: object
       properties:
         companyTypeId:
@@ -3586,6 +3587,8 @@ components:
           type: string
         director:
           type: string
+        extended_title:
+          type: string
         first_air_time:
           type: string
         genres:
@@ -3600,8 +3603,6 @@ components:
           type: string
         is_official:
           type: boolean
-        name_translated:
-          type: string
         network:
           type: string
         objectID:
@@ -3612,16 +3613,12 @@ components:
           type: string
         overviews:
             $ref: '#/components/schemas/TranslationSimple'
-        overview_translated:
-          items:
-            type: string
-          type: array
-        poster:
-          type: string
         posters:
           items:
             type: string
           type: array
+        primary_type:
+          type: string
         primary_language:
           type: string
         remote_ids:
@@ -3681,6 +3678,7 @@ components:
           type: integer
         image:
           type: string
+          description: Omitted when empty.
         imageType:
           type: integer
           description: Omitted when 0.
@@ -3688,6 +3686,7 @@ components:
           type: string
         name:
           type: string
+          description: Omitted when empty.
         nameTranslations:
           items:
             type: string
@@ -3713,6 +3712,7 @@ components:
           $ref: '#/components/schemas/SeasonType'
         year:
           type: string
+          description: Omitted when empty.
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeasonExtendedRecord:
@@ -3735,6 +3735,7 @@ components:
           type: integer
         image:
           type: string
+          description: Omitted when empty.
         imageType:
           type: integer
           description: Omitted when 0.
@@ -3742,6 +3743,7 @@ components:
           type: string
         name:
           type: string
+          description: Omitted when empty.
         nameTranslations:
           items:
             type: string
@@ -3778,6 +3780,7 @@ components:
           type: array
         year:
           type: string
+          description: Omitted when empty.
       type: object
       x-go-package: github.com/whip-networks/tvdb-api-v4-core/tvdb-api-v4-core/pkg/model
     SeasonType:
