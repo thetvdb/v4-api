@@ -10,7 +10,7 @@ info:
     ## Notes
     1. "score" is a field across almost all entities.  We generate scores for different types of entities in various ways, so no assumptions should be made about the meaning of this value.  It is simply used to hint at relative popularity for sorting purposes.
   title: TVDB API V4
-  version: 4.8.0
+  version: 4.9.0
 security:
   - bearerAuth: [ ]
 paths:
@@ -1790,6 +1790,13 @@ paths:
           schema:
             type: boolean
             enum: [ true, false ]
+        - description: language for the season names. Each season `name` comes back in this language when the season has a name in it; otherwise it keeps the default (the series original language, or English when that one is missing). Use a language id from /languages.
+          in: query
+          name: language
+          required: false
+          schema:
+            type: string
+            example: eng
       responses:
         '200':
           description: response
