@@ -4295,6 +4295,7 @@ components:
           nullable: true
         next:
           type: string
+          nullable: true
         total_items:
           type: integer
         page_size:
